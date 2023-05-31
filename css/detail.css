@@ -1,0 +1,39 @@
+@charset "utf-8";
+/* CSS Document */
+
+.emergency{
+    position: absolute;
+    bottom: 27px;
+    z-index: 1;
+    background: #50c3ef;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+}
+
+.appoinment-content{
+    position: relative;
+}
+
+.appoinment-content img{
+    width: 100%;
+}
+
+.btn-main{
+    background: #50c3ef;
+}
+
+.error{
+    background: yellow;
+    color: red;
+    padding: 5px;
+}
+
+.success{
+    background: #50c3ef;
+    color: #fff;
+    padding: 5px;
+}
+
+
+/*jquery  ui datepicker*/
