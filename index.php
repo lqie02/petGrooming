@@ -96,6 +96,7 @@ if(isset($_POST['btn_login']))
 <html lang="en">
 <head>
 	<meta charset="utf-8">
+	<link rel="shortcut icon" type="image/png" href="image/pets.png">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="css/index.css"> <!--css-->
 	<title>Abby Shop</title>

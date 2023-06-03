@@ -1,9 +1,9 @@
 <?php
 session_start();
 include('../connection/connection.php');
-if(isset($_SESSION["adminID"]))
+if(isset($_SESSION["supplierID"]))
 {
-	$id= $_SESSION["adminID"];
+	$id= $_SESSION["supplierID"];
 }
 else{
 	header('Location: ../indexAd.php');
@@ -39,7 +39,7 @@ if(isset($_POST['submit']))
 			if($res)
 			{
 				echo "<script>alert('Insert successfully');</script>";
-				echo"<meta http-equiv='refresh' content='0; url=managePro.php'/>";
+				echo"<meta http-equiv='refresh' content='0; url=sup_pro.php'/>";
 			}
 			else
 			{
@@ -68,7 +68,7 @@ if(isset($_POST['submit']))
 	<title>Add Product</title>
 </head>
 	<body>
-		<?php include('headerAdmin.php'); ?>
+		<?php include('headerSup.php'); ?>
 	<br><br>
 		<div class= "container">
 		<div class="text-center mb-4"><br><br><br>
@@ -80,7 +80,7 @@ if(isset($_POST['submit']))
 				<div class="row">
 					<div class="cal">
 						<label class="form-label">Product Name : </label>
-						<input type="text" class="form-control" name="productName" placeholder="Dog Food">
+						<input type="text" class="form-control" name="productName" placeholder="Cat/Dog Food">
 					</div>
 					
 					<div class="cal"><br>

@@ -2,9 +2,9 @@
 session_start();
 include('../connection/connection.php');
 
-if(isset($_SESSION["adminID"])) 
+if(isset($_SESSION["supplierID"])) 
 {
-	$id = $_SESSION["adminID"];
+	$id = $_SESSION["supplierID"];
 
 } else 
 {
@@ -23,7 +23,7 @@ if(isset($_SESSION["adminID"]))
 		$d_description = $_POST['d_description'];
 
 		// Update the product information in the database
-		$sql = "UPDATE package SET productName = '$productName', categoryID = '$cName', stockQuantity = '$stockQuantity', p_unitPrice = '$p_unitPrice' , d_description = '$d_description'  WHERE productID = '$productID'";
+		$sql = "UPDATE product SET productName = '$productName', categoryID = '$cName', stockQuantity = '$stockQuantity', p_unitPrice = '$p_unitPrice' , d_description = '$d_description'  WHERE productID = '$productID'";
 		$result = mysqli_query($conn, $sql);
 
 		// Check if the update was successful
@@ -45,27 +45,27 @@ if(isset($_SESSION["adminID"]))
 				{
 					// Image update successful
 					echo "<script>alert('Product information and image have been updated successfully');</script>";
-					echo"<meta http-equiv='refresh' content='0; url=managePro.php'/>";
+					echo"<meta http-equiv='refresh' content='0; url=sup_pro.php'/>";
 				} 
 				else 
 				{
 					// Image update failed
 					echo "<script>alert('Error updating the product image: " . mysqli_error($conn) . "');</script>";
-					echo "<meta http-equiv='refresh' content='0; url=managePro.php'/>";
+					echo "<meta http-equiv='refresh' content='0; url=sup_pro.php'/>";
 				}
 			} 
 			else 
 			{
 				// Image was not uploaded, only package information was updated
 				echo "<script>alert('Product information has been updated successfully');</script>";
-				echo"<meta http-equiv='refresh' content='0; url=managePro.php'/>";
+				echo"<meta http-equiv='refresh' content='0; url=sup_pro.php'/>";
 			}
 		} 
 		else 
 		{
 			// Update Product
 			echo "<script>alert('Error updating the product information: " . mysqli_error($conn) . "');</script>";
-			echo "<meta http-equiv='refresh' content='0; url=managePro.php'/>";
+			echo "<meta http-equiv='refresh' content='0; url=sup_pro.php'/>";
 		}
 	} 
 	else 

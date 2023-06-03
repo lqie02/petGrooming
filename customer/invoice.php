@@ -99,10 +99,11 @@ if (isset($_GET['id'])) {
         <table class="table mb-0">
     <thead class="card-header">
           <tr>
-            <td class="col-3 border-0"><strong>	No.</strong></td>
-      <td class="col-4 border-0"><strong>Description</strong></td>
+            <td class="col-2 border-0"><strong>	No.</strong></td>
+      		<td class="col-4 border-0"><strong>Description</strong></td>
+			<td class="col-3 text-center border-0"><strong>Appointment Date</strong></td>
             <td class="col-2 text-center border-0"><strong>Unit Price</strong></td>
-      <td class="col-1 text-center border-0"><strong>QTY</strong></td>
+      		<td class="col-1 text-center border-0"><strong>QTY</strong></td>
             <td class="col-2 text-right border-0"><strong>Amount</strong></td>
           </tr>
         </thead>
@@ -117,25 +118,26 @@ if (isset($_GET['id'])) {
 				?>
             <tr>
           
-			<td class="col-4 text-1 border-0" style="background-color: #dcd8cf;color: #000;"><?php echo $counter ?></td>
-              <td class="col-4 text-1 border-0" style="background-color: #dcd8cf;color: #000;"><?php echo $row1['packageName']; ?></td>
-              <td class="col-2 text-center border-0" style="background-color: #dcd8cf;color: #000;">RM <?php echo $row1['unitPrice']; ?></td>
-        <td class="col-1 text-center border-0" style="background-color: #dcd8cf;color: #000;"><?php echo $row1['quantity']; ?></td>
-        <td class="col-2 text-right border-0" style="background-color: #2264c4;color: #fff;">RM <?php echo number_format($row1['unitPrice'] * $row1['quantity'],2); ?></td>
+			<td class="col-2 text-1 border-0" style="background-color: #dcd8cf;color: #000;"><?php echo $counter ?></td>
+            <td class="col-4 text-1 border-0" style="background-color: #dcd8cf;color: #000;"><?php echo $row1['packageName']; ?></td>
+			<td class="col-3 text-center border-0" style="background-color: #dcd8cf;color: #000;"><?php echo $row1['appointmentDate']; ?></td>	
+            <td class="col-2 text-center border-0" style="background-color: #dcd8cf;color: #000;">RM <?php echo $row1['unitPrice']; ?></td>
+        	<td class="col-1 text-center border-0" style="background-color: #dcd8cf;color: #000;"><?php echo $row1['quantity']; ?></td>
+        	<td class="col-2 text-right border-0" style="background-color: #2264c4;color: #fff;">RM <?php echo number_format($row1['unitPrice'] * $row1['quantity'],2); ?></td>
             </tr> <?php $counter++;} } ?>
      
           </tbody>
       <tfoot class="card-footer">
             <tr>
-              <td colspan="4" class="text-right"><strong>Sub Total:</strong></td>
+              <td colspan="5" class="text-right"><strong>Sub Total:</strong></td>
               <td class="text-right">RM <?php echo $row['totalAmount']  ?></td>
             </tr>
             <tr>
-              <td colspan="4" class="text-right"><strong>Service Charge (10%) :</strong></td>
+              <td colspan="5" class="text-right"><strong>Service Charge (10%) :</strong></td>
               <td class="text-right">RM <?php echo $row['serviceCharge']; ?></td>
             </tr>
             <tr>
-              <td colspan="4" class="text-right"><strong>Total:</strong></td>
+              <td colspan="5" class="text-right"><strong>Total:</strong></td>
               <td class="text-right">RM <?php echo $row['amountAfterCharge']; ?></td>
             </tr>
       

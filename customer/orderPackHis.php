@@ -12,15 +12,15 @@ else{
 
 // Set the default values for the search fields
 $package_name = '';
-$appointment_date = '';
+$orderDate = '';
 
 // Get the search values from the form submission
 if (isset($_GET['package_name'])) {
   $package_name = $_GET['package_name'];
 }
 
-if (isset($_GET['appointment_date'])) {
-  $appointment_date = $_GET['appointment_date'];
+if (isset($_GET['orderDate'])) {
+  $orderDate = $_GET['orderDate'];
 }
 
 // Set the number of records per page
@@ -33,23 +33,26 @@ $page_number = isset($_GET['page']) ? $_GET['page'] : 1;
 $offset = ($page_number - 1) * $records_per_page;
 
 // Construct the SQL query with pagination
-$sql = "SELECT * FROM orders o 
+$sql = "SELECT o.ordersID, GROUP_CONCAT(CONCAT(p.packageName, ' 	
+		(Quantity: ', a.quantity, ', Unit Price: ', p.unitPrice, ')') SEPARATOR '<br>') as package_details, totalAmount, orderDate, status
+        FROM orders o 
         INNER JOIN appointment_detail a ON o.ordersID = a.ordersID 
         INNER JOIN package p ON p.packageID = a.packageID 
-        WHERE customerID ='$id'";
+        WHERE customerID = '$id'";
 
 if (!empty($package_name)) {
   $sql .= " AND p.packageName LIKE '%$package_name%'";
 }
 
-if (!empty($appointment_date)) {
+if (!empty($orderDate)) {
   // Convert the search date to a datetime range
-  $start_date = date('Y-m-d H:i:s', strtotime($appointment_date . ' 00:00:00'));
-  $end_date = date('Y-m-d H:i:s', strtotime($appointment_date . ' 23:59:59'));
-  $sql .= " AND a.appointmentDate BETWEEN '$start_date' AND '$end_date'";
+  $sql .= " AND o.orderDate = '$orderDate'";
 }
 
-$sql .= " ORDER BY o.ordersID DESC LIMIT $records_per_page OFFSET $offset";
+$sql .= " GROUP BY o.ordersID 
+          ORDER BY o.ordersID DESC 
+          LIMIT $records_per_page 
+          OFFSET $offset";
 
 $result = mysqli_query($conn, $sql);
 
@@ -106,7 +109,7 @@ $total_pages = ceil($total_records / $records_per_page);
 				      <input type="text" class="form-control" placeholder="Package name" name="package_name">
 				    </div>
 				    <div class="col-sm-2">
-				      <input type="date" class="form-control" placeholder="Appointment date" name="appointment_date">
+				      <input type="date" class="form-control" placeholder="Order date" name="orderDate">
 				    </div>
 					 
 
@@ -127,9 +130,8 @@ $total_pages = ceil($total_records / $records_per_page);
 					<th scope="col">NO.</th>
 					<th scope="col">ORDER ID</th>
 					<th scope="col">PACKAGE NAME</th>
-					<th scope="col">QUANTITY</th>
-					<th scope="col">APPOINTMENTDATE</th>
 					<th scope="col">TOTAL AMOUNT (RM)</th>
+					<th scope="col">ORDERDATE</th>
 					<th scope="col">STATUS</th>
 					<th scope="col">PRINT INVOICE</th>
 				</tr>
@@ -148,13 +150,12 @@ if (mysqli_num_rows($result) > 0) {
     <tr>
       <td><?php echo $i++ ?></td>
       <td><?php echo $row['ordersID'] ?></td>
-      <td><?php echo $row['packageName'] ?></td>
-      <td><?php echo $row['quantity'] ?></td>
-      <td><?php echo $row['appointmentDate'] ?></td>
+      <td style="text-align:start; padding-left: 10px; "><?php echo $row['package_details'] ?></td>
       <td><?php echo $row['totalAmount'] ?></td>
+      <td><?php echo $row['orderDate'] ?></td>
       <td><?php echo $row['status'] ?></td>
 	  <td>
-		  <a href="invoice.php?id=<?php echo $row['ordersID'] ?>" class="link-dark" style="text-decoration: none;"><i class="fa fa-download"></i>&nbsp;Download</a>
+		  <a href="invoice.php?id=<?php echo $row['ordersID'] ?>" class="link-dark" style="text-decoration: none;"><i class="fa fa-download"></i>&nbsp;Details</a>
 	  </td>
     </tr>
     <?php

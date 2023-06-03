@@ -16,11 +16,17 @@
 	<label for="menu-bar">Menu</label>
 	<nav class="navbar">
     <ul> 
+		<li><a href="home.php">Home</a></li>
         <li><a href="managePack.php">Package</a></li>
         <li><a href="managePro.php">Product</a></li>
 		<li><a href="manageSup.php">Supplier</a></li>
-        <li><a href="#">Sales Report</a></li>
-        <li><a href="logout.php">Logout</a></li>
+        <li><a href="#">Sales Report</a>
+			<ul>
+                <li><a href="salesPack.php">Package</a></li>
+                <li><a href="salesPro.php">Product</a></li>
+            </ul>
+		</li>
+        <li><a href="../logout.php">Logout</a></li>
     </ul>
 </nav>
 

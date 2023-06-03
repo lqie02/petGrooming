@@ -144,7 +144,7 @@ $totalPages = ceil($totalResults / $resultsPerPage);
         <td><?php echo $row['orderDate'] ?></td>
         <td><?php echo $row['p_status'] ?></td>
         <td>
-          <a href="invoicePro.php?id=<?php echo $row['ordersID'] ?>" class="link-dark" style="text-decoration: none;"><i class="fa fa-download"></i>&nbsp;Download</a>
+          <a href="invoicePro.php?id=<?php echo $row['ordersID'] ?>" class="link-dark" style="text-decoration: none;"><i class="fa fa-download"></i>&nbsp;Details</a>
         </td>
       </tr>
       <?php
