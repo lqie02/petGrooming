@@ -18,7 +18,7 @@
     <ul> 
 		<li><a href="home.php">Home</a></li>        
         <li><a href="sup_pro.php">Product</a></li>		
-        <li><a href="../logout.php">Logout</a></li>
+        <li><a href="logoutS.php">Logout</a></li>
     </ul>
 </nav>
 

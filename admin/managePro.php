@@ -63,7 +63,7 @@ else{
 <body>
 
     
-    <?php include("headerAdmin.php") ?><br><br><br><br><br><br>
+    <?php include("headerAdmin.php") ?><br><br><br><br>
 	<div class="toast-container">
     <div class="toast" id="lowStockToast" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
@@ -77,7 +77,7 @@ else{
 
   
     <div class="container">
-        <br><br><br><br><br><br>
+        <br><br><br><br><br>
         
             <table  class="table table-bordered" style="border-color: black;">
               <thead class="table-info" style="border-color: black;">

@@ -29,6 +29,9 @@ $result = $conn->query($sql);
 
 <body>
 	<?php include('headerCust.php');?>
+	
+	<p style="margin-top: 120px; "><center><b style="font-size: 25px;">DOG GROOMING</b></center></p>
+	
 	<main>
 	<?php 
 		while($row = mysqli_fetch_assoc($result)) {

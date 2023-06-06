@@ -20,13 +20,19 @@
         <li><a href="managePack.php">Package</a></li>
         <li><a href="managePro.php">Product</a></li>
 		<li><a href="manageSup.php">Supplier</a></li>
+		<li><a href="#">Customer</a>
+			<ul>
+                <li><a href="appointmentCust.php">Appointment</a></li>
+                <li><a href="orderCust.php">Order</a></li>
+            </ul>
+		</li>
         <li><a href="#">Sales Report</a>
 			<ul>
                 <li><a href="salesPack.php">Package</a></li>
                 <li><a href="salesPro.php">Product</a></li>
             </ul>
 		</li>
-        <li><a href="../logout.php">Logout</a></li>
+        <li><a href="logoutA.php">Logout</a></li>
     </ul>
 </nav>
 

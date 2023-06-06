@@ -36,8 +36,9 @@ else{
        display: flex;
        justify-content: center;
        align-items: flex-start;
-       margin-left: 100px;
+       margin-left: 90px;
 	   background-color: red;
+	   margin-top: 100px;
        
     }
 
@@ -61,10 +62,20 @@ else{
 	
 	<?php include("headerSup.php") ?>
 	
-	<div class="container">
-		<br><br><br><br><br><br>
-		<a href="addPro.php" class="btn btn-dark">Add New Product</a>
-		<br><br><br><br>
+	<div class="toast-container">
+    <div class="toast" id="lowStockToast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="me-auto" style="color: red">Low Stock Alert</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body bold-product-name" id="lowStockMessage"></div>
+    </div>
+</div>
+	
+	<div class="container" >
+		<br><br><br><br><br>
+		<a href="addPro.php" class="btn btn-dark" style="margin-top: 100px;">Add New Product</a>
+		<br><br>
 			<table class="table table-bordered" style="border-color: black;">
 			  <thead class="table-info" style="border-color: black;">
 				<tr>
@@ -80,11 +91,18 @@ else{
 			  </thead>
 			  <tbody>
 				  <?php
+					$lowStockProducts = ''; // New variable to store low stock products
 				  	$sql = "SELECT * FROM product p JOIN category c ON p.categoryID = c.categoryID JOIN supplier s ON p.supplierID = s.supplierID WHERE s.supplierID = '$id'";
 				  	$result = mysqli_query($conn,$sql);
 				  	while($row = mysqli_fetch_assoc($result))
-					{ ?>
-				  		<tr>
+					{ 
+				  		 $rowClass = '';
+        				if ($row['stockQuantity'] < 10) {
+          					$rowClass = 'low-stock-row';
+          					$lowStockProducts .= $row['productName'] . ', ';
+        				}
+				  		?>
+				  		<tr class="<?php echo $rowClass; ?>">
 						  <th><?php echo $row['productID'] ?></th>
 						  <th ><?php echo $row['productName'] ?></th>
 						  <th><?php echo '<img class="image" src="data:image/jpeg;base64,'.base64_encode($row['pro_image']).'" />'; ?></th>
@@ -131,8 +149,14 @@ else{
 
 										
 										<div class="mb-3">
-											<label for="stockQuantity" class="form-label">Stock Quantity</label>
-											<input type="text" class="form-control" id="stockQuantity" name="stockQuantity" value="<?php echo $row['stockQuantity']; ?>" required>
+											<label for="stockQuantity" class="form-label">Stock Quantity :</label>
+											<label for="stockQuantity" class="form-label"><?php echo $row['stockQuantity']; ?></label>
+											
+										</div>
+										
+										<div class="mb-3">
+											<label for="addStock" class="form-label"> Add Stock</label>
+											<input type="text" class="form-control" id="addStock" name="addStock" value="" required>
 										</div>
 										
 										<div class="mb-3">
@@ -182,5 +206,18 @@ else{
 	<!--bootsrap-->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 	
+	<script>
+    var lowStockProducts = "<?php echo $lowStockProducts; ?>";
+    if (lowStockProducts !== "") {
+        var lowStockMessage = document.getElementById("lowStockMessage");
+        lowStockMessage.textContent = "The following products have a quantity less than 10: " + lowStockProducts;
+
+        var lowStockToast = new bootstrap.Toast(document.getElementById('lowStockToast'));
+        lowStockToast.show();
+
+        lowStockToast._config.animation = false; // Disable the toast auto-hide animation
+        lowStockToast._config.autohide = false; // Prevent the toast from auto-hiding
+    }
+</script>
 </body>
 </html>

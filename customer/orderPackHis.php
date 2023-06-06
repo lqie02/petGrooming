@@ -33,9 +33,7 @@ $page_number = isset($_GET['page']) ? $_GET['page'] : 1;
 $offset = ($page_number - 1) * $records_per_page;
 
 // Construct the SQL query with pagination
-$sql = "SELECT o.ordersID, GROUP_CONCAT(CONCAT(p.packageName, ' 	
-		(Quantity: ', a.quantity, ', Unit Price: ', p.unitPrice, ')') SEPARATOR '<br>') as package_details, totalAmount, orderDate, status
-        FROM orders o 
+$sql = "SELECT * FROM orders o 
         INNER JOIN appointment_detail a ON o.ordersID = a.ordersID 
         INNER JOIN package p ON p.packageID = a.packageID 
         WHERE customerID = '$id'";
@@ -129,11 +127,10 @@ $total_pages = ceil($total_records / $records_per_page);
 				<tr>
 					<th scope="col">NO.</th>
 					<th scope="col">ORDER ID</th>
-					<th scope="col">PACKAGE NAME</th>
-					<th scope="col">TOTAL AMOUNT (RM)</th>
 					<th scope="col">ORDERDATE</th>
-					<th scope="col">STATUS</th>
+					<th scope="col">ORDER STATUS</th>
 					<th scope="col">PRINT INVOICE</th>
+					<th scope="col">FEEDBACK</th>
 				</tr>
 					 </thead>
 				<tbody>
@@ -149,13 +146,14 @@ if (mysqli_num_rows($result) > 0) {
     ?>
     <tr>
       <td><?php echo $i++ ?></td>
-      <td><?php echo $row['ordersID'] ?></td>
-      <td style="text-align:start; padding-left: 10px; "><?php echo $row['package_details'] ?></td>
-      <td><?php echo $row['totalAmount'] ?></td>
+      <td># <?php echo $row['ordersID'] ?></td>
       <td><?php echo $row['orderDate'] ?></td>
       <td><?php echo $row['status'] ?></td>
 	  <td>
 		  <a href="invoice.php?id=<?php echo $row['ordersID'] ?>" class="link-dark" style="text-decoration: none;"><i class="fa fa-download"></i>&nbsp;Details</a>
+	  </td>
+	  <td>
+		  <a href="rating.php?id=<?php echo $row['ordersID'] ?>" class="link-dark" style="text-decoration: none;"><i class="fa fa-hand-o-right"></i>&nbsp;Rating</a>
 	  </td>
     </tr>
     <?php
