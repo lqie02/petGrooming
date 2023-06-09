@@ -28,6 +28,7 @@
 		</li>
         <li><a href="#">Sales Report</a>
 			<ul>
+				<li><a href="ratingPack.php">Rating</a></li>
                 <li><a href="salesPack.php">Package</a></li>
                 <li><a href="salesPro.php">Product</a></li>
             </ul>

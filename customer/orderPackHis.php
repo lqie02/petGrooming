@@ -152,9 +152,18 @@ if (mysqli_num_rows($result) > 0) {
 	  <td>
 		  <a href="invoice.php?id=<?php echo $row['ordersID'] ?>" class="link-dark" style="text-decoration: none;"><i class="fa fa-download"></i>&nbsp;Details</a>
 	  </td>
-	  <td>
-		  <a href="rating.php?id=<?php echo $row['ordersID'] ?>" class="link-dark" style="text-decoration: none;"><i class="fa fa-hand-o-right"></i>&nbsp;Rating</a>
-	  </td>
+<td>
+  <?php
+    // Assuming $row contains the appointment_detail data
+    if ($row['feedback'] == 'Done') {
+      echo "Thank you for your rating. <i class='fa-solid fa-heart' style='color: #e52a74;'></i>";
+    } else {
+      echo "<a href='rating.php?id=".$row['ordersID']."' class='link-dark' style='text-decoration: none;'><i class='fa fa-hand-o-right'></i>&nbsp;Rating</a>";
+    }
+  ?>
+</td>
+
+
     </tr>
     <?php
   }

@@ -1,22 +1,30 @@
 <?php
 session_start();
 include('../connection/connection.php');
-if(isset($_SESSION["customerID"]))
-{
-  $id= $_SESSION["customerID"]; 
-}
-else
-{
+
+if (isset($_SESSION["customerID"])) {
+  $id = $_SESSION["customerID"]; 
+} else {
   header('Location: ../index.php');
 }
 
-  if(isset($_POST['submit'])){
-     $customer_query =mysqli_query($conn,"UPDATE customer SET customerName = '" .$_POST['customerName'] ."',email = '" .$_POST['email'] ."', telephone = '" .$_POST['telephone'] . "', cAddress = '" .$_POST['address'] . "',password = '" .md5($_POST['password']) ."' WHERE customerID = '".$_SESSION['customerID']."'");
+if (isset($_POST['submit'])) {
+  // Perform the update query
+  $customer_query = mysqli_query($conn, "UPDATE customer SET customerName = '" . $_POST['customerName'] . "', email = '" . $_POST['email'] . "', telephone = '" . $_POST['telephone'] . "', cAddress = '" . $_POST['address'] . "', password = '" . md5($_POST['password']) . "' WHERE customerID ='$id' ");
 
-   echo '<script>alert("Update successfully"); location.replace(document.referrer);</script>';
+
+  // Check if the update was successful
+  if ($customer_query) {
+    // Trigger the refresh meta tag and display success message
+    echo '<meta http-equiv="refresh" content="0;url=profile.php">';
+    echo '<script>alert("Update successful");</script>';
+  } else {
+    // Display error message if the update failed
+   die('Update failed: ' . mysqli_error($conn));
   }
+}
 
-$customer = mysqli_query($conn,"SELECT * FROM customer WHERE customerID='".$id."'");
+$customer = mysqli_query($conn, "SELECT * FROM customer WHERE customerID = '" . $id . "'");
 $row = mysqli_fetch_assoc($customer);
 ?>
 
@@ -31,47 +39,40 @@ $row = mysqli_fetch_assoc($customer);
 <link rel="stylesheet" a href="../css/profile.css"> 
 <link rel="stylesheet" a href="../css/bootstrapla.css">
 <title>Profile</title>  
-
 </head>
 
 <body>
-	<?php include('headerCart.php');?>
-	<br>
-	<div class="page">
-  <div class="container">
-    <div class="left">
-      <div class="inforegister">Customer Details</div>
-      <div class="eula">Please click submit after changing any information</div>
-    </div>
-    <div class="right">
-     
-
-
-      <div class="form">
-        <form action="" method="post">
-        <label>Name</label>
-        <input type="text" style="font-size: 16px" placeholder="Name" name="customerName" value="<?php echo $row['customerName'] ?>">
-
-        <label>Email</label>
-        <input type="text" style="font-size: 16px" placeholder="Email" name="email" value="<?php echo $row['email'] ?>">
-
-        <label>Telephone</label>
-        <input type="text" style="font-size: 16px" placeholder="Telephone" name="telephone" value="<?php echo $row['telephone'] ?>">
-		
-		<label>Address</label>
-        <input type="text" style="font-size: 16px" placeholder="Address" name="address" value="<?php echo $row['cAddress'] ?>">
-
-        
-        <label>Password</label>
-        <input pattern=".{8,}" type="password" placeholder="Password"  name="password"  title="8 characters minimum" value="<?php echo $row['password'] ?>">
-        <br><br>
-       <button class="button button3" name="submit">Submit</button>
+  <?php include('headerCart.php');?>
+  <br>
+  <div class="page">
+    <div class="container">
+      <div class="left">
+        <div class="inforegister">Customer Details</div>
+        <div class="eula">Please click submit after changing any information</div>
       </div>
+      <div class="right">
+        <div class="form">
+          <form action="" method="post">
+            <label>Name</label>
+            <input type="text" style="font-size: 16px" placeholder="Name" name="customerName" value="<?php echo $row['customerName'] ?>">
 
+            <label>Email</label>
+            <input type="text" style="font-size: 16px" placeholder="Email" name="email" value="<?php echo $row['email'] ?>">
+
+            <label>Telephone</label>
+            <input type="text" style="font-size: 16px" placeholder="Telephone" name="telephone" value="<?php echo $row['telephone'] ?>">
+            
+            <label>Address</label>
+            <input type="text" style="font-size: 16px" placeholder="Address" name="address" value="<?php echo $row['cAddress'] ?>">
+
+            <label>Password</label>
+            <input pattern=".{8,}" type="password" placeholder="Password" name="password" title="8 characters minimum" value="<?php echo $row['password'] ?>">
+            <br><br>
+            <button class="button button3" name="submit">Submit</button>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</form>
-
-</div>
+  </form>
 </body>
 </html>
