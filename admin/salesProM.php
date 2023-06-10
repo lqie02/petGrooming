@@ -25,32 +25,32 @@ $monthNames = array(
 );
 
 // Retrieve the top 5 packages with the highest sales for the selected month
-$sql = "SELECT p.packageName, SUM(ad.quantity) AS totalQuantity, SUM(p.unitPrice * ad.quantity) AS totalSale
-        FROM appointment_detail ad
-        INNER JOIN package p ON ad.packageID = p.packageID
+$sql = "SELECT p.productName, SUM(ad.p_quantity) AS totalQuantity, SUM(p.p_unitPrice * ad.p_quantity) AS totalSale
+        FROM product_detail ad
+        INNER JOIN product p ON ad.productID = p.productID
         INNER JOIN payment pm ON ad.ordersID = pm.ordersID
         INNER JOIN orders o ON ad.ordersID = o.ordersID
         WHERE MONTH(pm.paymentDate) = '$selectedMonth' AND YEAR(pm.paymentDate) = '$selectedYear'
-        GROUP BY p.packageID
+        GROUP BY p.productID
         ORDER BY totalSale DESC
         LIMIT 5";
 $result = mysqli_query($conn, $sql);
 
 //calculate the total amount of sales for the top 5 package
-$sqlTotalSales = "SELECT SUM(subquery.totalSale) AS totalSalesOfTopPackages FROM (
-  				SELECT p.packageName, SUM(ad.quantity) AS totalQuantity, SUM(p.unitPrice * ad.quantity) AS totalSale
-  				FROM appointment_detail ad
-  				INNER JOIN package p ON ad.packageID = p.packageID
+$sqlTotalSales = "SELECT SUM(subquery.totalSale) AS totalSalesOfTopProduct FROM (
+  				SELECT p.productName, SUM(ad.p_quantity) AS totalQuantity, SUM(p.p_unitPrice * ad.p_quantity) AS totalSale
+  				FROM product_detail ad
+  				INNER JOIN product p ON ad.productID = p.productID
   				INNER JOIN payment pm ON ad.ordersID = pm.ordersID
   				INNER JOIN orders o ON ad.ordersID = o.ordersID
   				WHERE MONTH(pm.paymentDate) = '$selectedMonth' AND YEAR(pm.paymentDate) = '$selectedYear'
-  				GROUP BY p.packageID
+  				GROUP BY p.productID
   				ORDER BY totalSale DESC
 				LIMIT 5
 				) AS subquery";
 $resultTotalSales = mysqli_query($conn,$sqlTotalSales);
 $rowTotalSales = mysqli_fetch_assoc($resultTotalSales);
-$totalSales = $rowTotalSales['totalSalesOfTopPackages'];
+$totalSales = $rowTotalSales['totalSalesOfTopProduct'];
 
 // Check if there are no records for the selected date
 $noResults = mysqli_num_rows($result) == 0;
@@ -60,7 +60,7 @@ $sqlAfterCharge = "SELECT SUM(subquery.totalAmountAfterCharge) AS totalSum FROM 
   				SELECT p.amountAfterCharge AS totalAmountAfterCharge
   				FROM payment p
   				INNER JOIN orders o ON p.ordersID = o.ordersID
-  				INNER JOIN appointment_detail pa ON pa.ordersID = o.ordersID
+  				INNER JOIN product_detail pa ON pa.ordersID = o.ordersID
   				WHERE MONTH(p.paymentDate) = '$selectedMonth' AND YEAR(p.paymentDate) = '$selectedYear'
   				GROUP BY p.paymentID, p.amountAfterCharge ) AS subquery";
 $resultAfterCharge = mysqli_query($conn,$sqlAfterCharge);
@@ -88,13 +88,13 @@ $totalCharge = $rowAfterCharge['totalSum'];
 <?php include('headerAdmin.php'); ?> <br><br><br><br>
 
 <h2>
-  <center>Sales Report Package</center>
+  <center>Sales Report Product</center>
 </h2><br>
 	
 <div style="margin-left: 100px;">
-<a href="salesPack.php"><button type="button" class="btn btn-secondary">&nbsp;Daily Sales&nbsp;</button></a>
-<a href="salesPackM.php"><button type="button" class="btn btn-secondary" style="margin-left: 8px">&nbsp;Monthly Sales&nbsp;</button></a>
-<a href="salesPackY.php"><button type="button" class="btn btn-secondary" style="margin-left: 8px">&nbsp;Yearly Sales&nbsp;</button></a>
+<a href="salesPro.php"><button type="button" class="btn btn-secondary">&nbsp;Daily Sales&nbsp;</button></a>
+<a href="salesProM.php"><button type="button" class="btn btn-secondary" style="margin-left: 8px">&nbsp;Monthly Sales&nbsp;</button></a>
+<a href="salesProY.php"><button type="button" class="btn btn-secondary" style="margin-left: 8px">&nbsp;Yearly Sales&nbsp;</button></a>
 </div>
 
  <div class="row mb-3" style="margin-left: 90px;margin-top: 30px">
@@ -159,7 +159,7 @@ $totalCharge = $rowAfterCharge['totalSum'];
     <?php
     while ($row = mysqli_fetch_assoc($result)) {
       echo "<tr>";
-      echo "<td>" . $row['packageName'] . "</td>";
+      echo "<td>" . $row['productName'] . "</td>";
       echo "<td>" . $row['totalQuantity'] . "</td>";
       echo "<td>RM " . $row['totalSale'] . "</td>";
       echo "</tr>";
@@ -195,7 +195,7 @@ $totalCharge = $rowAfterCharge['totalSum'];
   <?php
   $resultChart = mysqli_query($conn, $sql); // New variable to fetch chart data
   while ($row = mysqli_fetch_assoc($resultChart)) {
-    echo "xValues.push('" . $row['packageName'] . "');";
+    echo "xValues.push('" . $row['productName'] . "');";
     echo "yValues.push(" . $row['totalSale'] . ");";
   }
   ?>

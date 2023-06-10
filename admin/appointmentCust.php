@@ -13,7 +13,7 @@ else{
 
 if(isset($_GET['packageID']) && isset($_GET['status']) && isset($_GET['ordersID']))
 {
-	$packageIDs = $_GET['packageID']; // Multiple package IDs separated by comma
+	$packageIDs = $_GET['packageID']; 
 	$status = $_GET['status'];
 	$ordersID = $_GET['ordersID'];
 
@@ -22,8 +22,13 @@ if(isset($_GET['packageID']) && isset($_GET['status']) && isset($_GET['ordersID'
 	
 	if($status =="Approve")
 	{
-	mysqli_query($conn,"UPDATE orders SET adminID = '$id' WHERE ordersID='$ordersID'");}
+		mysqli_query($conn,"UPDATE orders SET adminID = '$id' WHERE ordersID='$ordersID'");
+	}
 	
+		if($status =="Cancel")
+	{
+		mysqli_query($conn,"UPDATE orders SET adminID = '$id' WHERE ordersID='$ordersID'");
+	}
 	
 	header("Location: appointmentCust.php");
 	
@@ -93,6 +98,7 @@ if(isset($_GET['packageID']) && isset($_GET['status']) && isset($_GET['ordersID'
 						<select  id="statusSelect" onChange="status_update(this.options[this.selectedIndex].value, '<?php echo $row['packageID'] ?>', '<?php echo $row['ordersID'] ?>')">
 						<option value="">Update Status</option>	
 						<option value="Approve">Approve</option>
+						<option value="Cancel">Cancel</option>
 						</select>
 						</td>
 

@@ -19,9 +19,9 @@ if (isset($_POST['submit'])) {
 }
 
 // Retrieve the total sales of each month for the selected year
-$sql = "SELECT MONTH(pm.paymentDate) AS month, SUM(p.unitPrice * ad.quantity) AS totalSale
-        FROM appointment_detail ad
-        INNER JOIN package p ON ad.packageID = p.packageID
+$sql = "SELECT MONTH(pm.paymentDate) AS month, SUM(p.p_unitPrice * ad.p_quantity) AS totalSale
+        FROM product_detail ad
+        INNER JOIN product p ON ad.productID = p.productID
         INNER JOIN orders o ON ad.ordersID = o.ordersID
         INNER JOIN payment pm ON ad.ordersID = pm.ordersID
         WHERE YEAR(pm.paymentDate) = '$selectedYear'
@@ -69,13 +69,13 @@ while ($row = mysqli_fetch_assoc($result)) {
 <?php include('headerAdmin.php'); ?> <br><br><br><br>
 
 <h2>
-  <center>Sales Report Package</center>
+  <center>Sales Report Product</center>
 </h2><br>
 
 <div style="margin-left: 100px;">
-<a href="salesPack.php"><button type="button" class="btn btn-secondary">&nbsp;Daily Sales&nbsp;</button></a>
-<a href="salesPackM.php"><button type="button" class="btn btn-secondary" style="margin-left: 8px">&nbsp;Monthly Sales&nbsp;</button></a>
-<a href="salesPackY.php"><button type="button" class="btn btn-secondary" style="margin-left: 8px">&nbsp;Yearly Sales&nbsp;</button></a>
+<a href="salesPro.php"><button type="button" class="btn btn-secondary">&nbsp;Daily Sales&nbsp;</button></a>
+<a href="salesProM.php"><button type="button" class="btn btn-secondary" style="margin-left: 8px">&nbsp;Monthly Sales&nbsp;</button></a>
+<a href="salesProY.php"><button type="button" class="btn btn-secondary" style="margin-left: 8px">&nbsp;Yearly Sales&nbsp;</button></a>
 </div>
 	
 <div class="row mb-3" style="margin-left: 90px;margin-top: 30px">

@@ -17,18 +17,18 @@ if (isset($_POST['submit'])) {
 }
 
 // Retrieve total sales for package services
-$sqlPackageSales = "SELECT p.packageName, SUM(ad.quantity) AS totalQuantity, SUM(p.unitPrice * ad.quantity) AS totalSale
-                    FROM appointment_detail ad
-                    INNER JOIN package p ON ad.packageID = p.packageID
+$sqlProductSales = "SELECT p.productName, SUM(ad.p_quantity) AS totalQuantity, SUM(p.p_unitPrice * ad.p_quantity) AS totalSale
+                    FROM product_detail ad
+                    INNER JOIN product p ON ad.productID = p.productID
                     INNER JOIN payment pm ON ad.ordersID = pm.ordersID
                     WHERE pm.paymentDate = '$selectedDate'
-                    GROUP BY p.packageID";
-$resultPackageSales = mysqli_query($conn, $sqlPackageSales);
+                    GROUP BY p.productName";
+$resultProductSales = mysqli_query($conn, $sqlProductSales);
 
 // Retrieve the total amount of the daily sale
-$sqlTotalSales = "SELECT SUM(p.unitPrice * ad.quantity) AS totalSales
-                  FROM appointment_detail ad
-                  INNER JOIN package p ON ad.packageID = p.packageID
+$sqlTotalSales = "SELECT SUM(p.p_unitPrice * ad.p_quantity) AS totalSales
+                  FROM product_detail ad
+                  INNER JOIN product p ON ad.productID = p.productID
                   INNER JOIN payment pm ON ad.ordersID = pm.ordersID
                   WHERE pm.paymentDate = '$selectedDate'";
 $resultTotalSales = mysqli_query($conn, $sqlTotalSales);
@@ -36,23 +36,22 @@ $rowTotalSales = mysqli_fetch_assoc($resultTotalSales);
 $totalSales = $rowTotalSales['totalSales'];
 
 // Check if there are no records for the selected date
-$noResults = mysqli_num_rows($resultPackageSales) == 0;
+$noResults = mysqli_num_rows($resultProductSales) == 0;
 
 //the total of the amount after charge
 $sqlamount = "SELECT SUM(subquery.totalAmountAfterCharge) AS totalSum FROM (
   SELECT p.amountAfterCharge AS totalAmountAfterCharge
   FROM payment p
   INNER JOIN orders o ON p.ordersID = o.ordersID
-  INNER JOIN appointment_detail pa ON pa.ordersID = o.ordersID
+  INNER JOIN product_detail pa ON pa.ordersID = o.ordersID
   WHERE p.paymentDate = '$selectedDate'
   GROUP BY p.paymentID, p.amountAfterCharge
 ) AS subquery";
 $resultAmount = mysqli_query($conn, $sqlamount);
 $rowAmount = mysqli_fetch_assoc($resultAmount);
 $totalCharge = $rowAmount['totalSum'];
-
-
 ?>
+
 <!doctype html>
 <html>
 <head>
@@ -73,15 +72,15 @@ $totalCharge = $rowAmount['totalSum'];
 <?php include('headerAdmin.php'); ?> <br><br><br><br>
 
 <h2>
-  <center>Sales Report Package</center>
+  <center>Sales Report Product</center>
 </h2><br>
 
 <div style="margin-left: 100px;">
-<a href="salesPack.php"><button type="button" class="btn btn-secondary">&nbsp;Daily Sales&nbsp;</button></a>
-<a href="salesPackM.php"><button type="button" class="btn btn-secondary" style="margin-left: 8px">&nbsp;Monthly Sales&nbsp;</button></a>
-<a href="salesPackY.php"><button type="button" class="btn btn-secondary" style="margin-left: 8px">&nbsp;Yearly Sales&nbsp;</button></a>
+<a href="salesPro.php"><button type="button" class="btn btn-secondary">&nbsp;Daily Sales&nbsp;</button></a>
+<a href="salesProM.php"><button type="button" class="btn btn-secondary" style="margin-left: 8px">&nbsp;Monthly Sales&nbsp;</button></a>
+<a href="salesProY.php"><button type="button" class="btn btn-secondary" style="margin-left: 8px">&nbsp;Yearly Sales&nbsp;</button></a>
 </div>
-	
+
 <div class="row mb-3" style="margin-left: 90px;margin-top: 30px">
   <form method="POST">
     <label for="selectedDate">Select Date:</label>
@@ -97,16 +96,16 @@ $totalCharge = $rowAmount['totalSum'];
     <table class="table table-hover text-center table-bordered">
       <thead class="table-dark">
       <tr>
-        <th scope="col">Package Name</th>
+        <th scope="col">Product Name</th>
         <th scope="col">Total Quantity</th>
         <th scope="col">Total Sales</th>
       </tr>
       </thead>
       <tbody>
       <?php
-      while ($row = mysqli_fetch_assoc($resultPackageSales)) {
+      while ($row = mysqli_fetch_assoc($resultProductSales)) {
         echo "<tr>";
-        echo "<td>" . $row['packageName'] . "</td>";
+        echo "<td>" . $row['productName'] . "</td>";
         echo "<td>" . $row['totalQuantity'] . "</td>";
         echo "<td>RM " . $row['totalSale'] . "</td>";
         echo "</tr>";
@@ -137,9 +136,9 @@ $totalCharge = $rowAmount['totalSum'];
   var barColors = ["red", "lightgreen", "blue", "orange", "brown", "yellow", "purple", "green", "pink", "lightblue"];
 
   <?php
-  $resultChart = mysqli_query($conn, $sqlPackageSales); // New variable to fetch chart data
+  $resultChart = mysqli_query($conn, $sqlProductSales); // New variable to fetch chart data
   while ($row = mysqli_fetch_assoc($resultChart)) {
-    echo "xValues.push('" . $row['packageName'] . "');";
+    echo "xValues.push('" . $row['productName'] . "');";
     echo "yValues.push(" . $row['totalSale'] . ");";
   }
   ?>
@@ -149,7 +148,7 @@ $totalCharge = $rowAmount['totalSum'];
     data: {
       labels: xValues,
       datasets: [{
-        label: "Package Sales",
+        label: "Product Sales",
         backgroundColor: barColors,
         data: yValues
       }]
@@ -172,7 +171,7 @@ $totalCharge = $rowAmount['totalSum'];
         x: {
           title: {
             display: true,
-            text: "Package Name",
+            text: "Product Name",
             font: {
               weight: 'bold'
             }
