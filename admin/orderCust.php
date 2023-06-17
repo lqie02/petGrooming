@@ -52,8 +52,10 @@ if(isset($_GET['status']) && isset($_GET['ordersID']))
 	
 
 	<br><br><br><br><br><br>
-	<h2 class="txt1" style="text-align: center">CUSTOMER ORDER</h2>    
+	<h2 class="txt1" style="text-align: center">CUSTOMER ORDER</h2><br>
+	<a href="orderCustHis.php" class="btn btn-dark" style="margin-left:100px">Order History</a><br>
 	<br>
+	
 	<div class="container">
 		<table class="table table-hover text-center">
 			<thead class="table-dark">

@@ -49,7 +49,7 @@ if(isset($_POST['btn_login']))
 
         mysqli_query($conn,"DELETE FROM loginlogs WHERE IpAddress = '" . $ip_address . "'");
         echo "<script>alert('Login Success!');</script>";
-        echo"<meta http-equiv='refresh' content='0; url=customer/dog_grooming.php'>";
+        echo"<meta http-equiv='refresh' content='0; url=customer/home.php'>";
 		}
 		else
 		{
@@ -103,7 +103,7 @@ if(isset($_POST['btn_login']))
 	
 </head>
 <body>
-	<?php include('headerReg.php');?>
+
   <div class="container">
     <form action="" method="POST" class="login-email">
       <p align="center" class="login-text" style="font-size: 2rem; font-weight: 800;">Login Customer</p>

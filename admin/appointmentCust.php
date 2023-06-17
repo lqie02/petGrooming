@@ -58,7 +58,8 @@ if(isset($_GET['packageID']) && isset($_GET['status']) && isset($_GET['ordersID'
 	
 
 	<br><br><br><br><br><br>
-	<h2 class="txt1" style="text-align: center">CUSTOMER APPOINTMENT</h2>    
+	<h2 class="txt1" style="text-align: center">CUSTOMER APPOINTMENT</h2><br>    
+	<a href="appointmentCustHis.php" class="btn btn-dark" style="margin-left:100px">Appointment History</a><br>
 	<br>
 	<div class="container">
 		<table class="table table-hover text-center">
@@ -98,7 +99,6 @@ if(isset($_GET['packageID']) && isset($_GET['status']) && isset($_GET['ordersID'
 						<select  id="statusSelect" onChange="status_update(this.options[this.selectedIndex].value, '<?php echo $row['packageID'] ?>', '<?php echo $row['ordersID'] ?>')">
 						<option value="">Update Status</option>	
 						<option value="Approve">Approve</option>
-						<option value="Cancel">Cancel</option>
 						</select>
 						</td>
 

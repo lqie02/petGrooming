@@ -29,7 +29,7 @@ if (!empty($orderDate)) {
 }
 
 $sql .= " GROUP BY o.ordersID";
-
+$sql .= " ORDER BY o.ordersID DESC ";
 $result = mysqli_query($conn, $sql);
 
 // Set the number of results per page
@@ -56,6 +56,7 @@ if (!empty($orderDate)) {
 }
 
 $sql .= " GROUP BY o.ordersID";
+$sql .= " ORDER BY o.ordersID DESC ";
 $sql .= " LIMIT $offset, $resultsPerPage";
 
 $result = mysqli_query($conn, $sql);
@@ -83,7 +84,7 @@ $totalPages = ceil($totalResults / $resultsPerPage);
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 	
-	<title>Abby Shop</title>
+	<title>Sweet Sensations</title>
 </head>
 	
 <body> 
@@ -107,9 +108,6 @@ $totalPages = ceil($totalResults / $resultsPerPage);
       </div>
     </div>
   </form>
-  <table class="table table-hover text-center">
-    <!-- table headers and rows -->
-  </table>
 </div>
 
 				

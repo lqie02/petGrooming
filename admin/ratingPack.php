@@ -17,7 +17,7 @@ else{
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<title>Food Rating Report</title>
+<title>Abby Shop</title>
 <style type="text/css">
 .chart-container {
   display: flex;

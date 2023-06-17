@@ -151,7 +151,7 @@ if(isset($_POST['btn_login']))
 	
 </head>
 <body>
-	<?php include('headerAd.php');?>
+
   <div class="container">
     <form action="" method="POST" class="login-email">
       <p align="center" class="login-text" style="font-size: 2rem; font-weight: 800;">Login</p>

@@ -132,7 +132,7 @@ body {
 
 .container .login-email .input-group .btn:hover {
     transform: translateY(-5px);
-    background: #ffcc00;
+    background: #FF8517;
 }
 
 .login-register-text {
@@ -142,7 +142,7 @@ body {
 
 .login-register-text a {
     text-decoration: none;
-    color: #b38f00;
+    color: darkorange;
 }
 
 @media (max-width: 430px) {

@@ -20,24 +20,19 @@ if ($result->num_rows > 0) {
   $telephone = $row["telephone"];
 }
 
-// Get the amount and order ID and service charge values from the URL query string
+
 if (isset($_GET['amount'])) {
     $amount = $_GET['amount'];
-} else {
-    // handle the case where the "amount" key is not set
-}
+} 
 
 if (isset($_GET['orderid'])) {
     $orderid = $_GET['orderid'];
-} else {
-    // handle the case where the "orderid" key is not set
-}
+} 
 
 if (isset($_GET['charge'])) {
     $charge = $_GET['charge'];
-} else {
-    // handle the case where the "amount" key is not set
-}
+} 
+
 $result1 =mysqli_query($conn,"INSERT INTO payment (paymentDate, serviceCharge, amountAfterCharge, payMethod, ordersID) VALUES (NOW(),'$charge','$amount','Online Banking','$orderid')");
 
 

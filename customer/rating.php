@@ -20,6 +20,7 @@ $id = $_GET['id'];
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="../css/rating.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <title>Abby Shop</title>
 </head>
 
@@ -62,8 +63,9 @@ $id = $_GET['id'];
 		} ?>
 		
 			<th colspan="2" style="text-align: center;">
- 			 <button type="submit">Submit Rating</button>
+  			<button type="submit" class="btn btn-outline-secondary">Submit Rating</button>
 			</th>
+
 
 		
 	</tbody>

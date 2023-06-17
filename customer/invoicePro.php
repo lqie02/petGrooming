@@ -9,9 +9,7 @@ include("../connection/connection.php");
   }
 if (isset($_GET['id'])) {
     $orderid = $_GET['id'];
-} else {
-    // handle the case where the "orderid" key is not set
-}
+} 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +35,12 @@ if (isset($_GET['id'])) {
 
 <?php
 	
-	$query = "SELECT * FROM payment p, orders o, customer c, product_detail a, product d WHERE p.ordersID=o.ordersID AND a.ordersID=o.ordersID AND a.productID=d.productID AND o.customerID=c.customerID AND p.ordersID =$orderid";
+	$query = "SELECT * FROM payment p
+    JOIN orders o ON p.ordersID = o.ordersID
+    JOIN customer c ON o.customerID = c.customerID
+    JOIN product_detail a ON a.ordersID = o.ordersID
+    JOIN product d ON a.productID =d.productID
+    WHERE p.ordersID =$orderid";
 	$result = mysqli_query($conn,$query);
 	if(mysqli_num_rows($result)>0)
 	{
@@ -109,7 +112,7 @@ if (isset($_GET['id'])) {
         </thead>
           <tbody>
 			  <?php 
-				$query1 = "SELECT * FROM payment p, orders o, customer c, product_detail a, product d WHERE p.ordersID=o.ordersID AND a.ordersID=o.ordersID AND a.productID=d.productID AND o.customerID=c.customerID AND p.ordersID =$orderid";
+	$query1 = "CALL GetPaymentDetails($orderid)";
 	$result1 = mysqli_query($conn,$query1);
 	if(mysqli_num_rows($result1)>0)
 	{ $counter=1;

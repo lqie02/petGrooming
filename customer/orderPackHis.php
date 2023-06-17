@@ -100,9 +100,9 @@ $total_pages = ceil($total_records / $records_per_page);
 	<?php include('headerCart.php'); ?>
 		
 			  <p style="margin-top: 120px; "><center><b style="font-size: 20px;">APPOINTMENT HISTORY</b></center></p>
-				<!--<h2 class="txt1">Delivered History</h2>-->     
+	                   
 				<form method="get">
-				  <div class="row mb-3" style="margin-left: 90px; margin-top: 50px;">
+				  <div class="row mb-3" style="margin-left: 90px; margin-top: 30px;">
 				    <div class="col-sm-2">
 				      <input type="text" class="form-control" placeholder="Package name" name="package_name">
 				    </div>

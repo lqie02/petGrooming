@@ -1,3 +1,15 @@
+<?php
+session_start();
+include('../connection/connection.php');
+if(isset($_SESSION["adminID"]))
+{
+	$id= $_SESSION["adminID"];
+}
+else{
+	header('Location: ../indexAd.php');
+}
+
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -36,9 +48,8 @@
         <li><a href="logoutA.php">Logout</a></li>
     </ul>
 </nav>
-
-
 </header>
-	
+
+
 </body>
 </html>

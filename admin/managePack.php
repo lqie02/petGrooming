@@ -39,9 +39,11 @@ else{
 	<?php include("headerAdmin.php") ?>
 	
 	<div class="container">
-		<br><br><br><br><br><br>
+		<br><br><br> <br><br>
+		<h2><center>Package</center></h2>
 		<a href="addPack.php" class="btn btn-dark">Add New Package</a>
-		<br><br><br><br>
+		<a href="review.php" class="btn btn-dark" style="margin-left: 10px">Package Review</a>
+		<br><br>
 			<table class="table table-bordered" style="border-color: black;">
 			  <thead class="table-info" style="border-color: black;">
 				<tr>
@@ -67,13 +69,15 @@ else{
 						  <th><center><?php echo $row['animalType'] ?></center></th>
 						  <th><center><?php echo $row['unitPrice'] ?></center></th>
 						  <th><?php echo $row['description'] ?></th>
-						  <td>
-							  <center>
-								  <a href="#" class="link-dark" data-bs-toggle="modal" data-bs-target="#packageModal<?php echo $row['packageID']; ?>">
-									  <i class="fa-solid fa-pen-to-square fs-5 me-3"></i>
-								  </a>
-							  </center>
-						  </td>
+						<td>
+  							<div style="display: flex; justify-content: center;">
+   							 <a href="#" class="link-dark" data-bs-toggle="modal" data-bs-target="#packageModal<?php echo $row['packageID']; ?>">
+      						<i class="fa-solid fa-pen-to-square fs-5 me-3"></i></a>
+    						<a href="deletePack.php?packageID=<?php echo $row['packageID'] ?>" onclick="return confirm('Are you sure you want to delete this package?')">
+  							<i class="fa fa-trash fs-4 me-3" style="color: red"></i></a>
+  							</div>
+						</td>
+
 						</tr>
 				  		<!-- Package Modal -->
 						<div class="modal fade" id="packageModal<?php echo $row['packageID']; ?>" tabindex="-1" aria-labelledby="packageModalLabel<?php echo $row['packageID']; ?>" aria-hidden="true">

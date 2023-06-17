@@ -37,7 +37,7 @@ else{
        display: flex;
        justify-content: center;
        align-items: flex-start;
-       margin-left: 100px;
+       margin-left: 80px;
 	   background-color: red;
        
     }
@@ -77,8 +77,9 @@ else{
 
   
     <div class="container">
-        <br><br><br><br><br>
-        
+        <br>
+        <h2><center>Product</center></h2>
+		<br><br><br>
             <table  class="table table-bordered" style="border-color: black;">
               <thead class="table-info" style="border-color: black;">
                 <tr >
@@ -95,7 +96,7 @@ else{
               <tbody>
                    <?php
         $lowStockProducts = ''; // New variable to store low stock products
-        $sql = "SELECT * FROM product p, category c, supplier s WHERE p.categoryID=c.categoryID AND p.supplierID=s.supplierID ORDER BY CASE WHEN c.cName = 'Dog' THEN 1 WHEN c.cName = 'Cat' THEN 2 END";
+        $sql = "CALL GetProductsByCategory()";
         $result = mysqli_query($conn,$sql);
         while($row = mysqli_fetch_assoc($result))
         { 

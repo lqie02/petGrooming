@@ -3,7 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="shortcut icon" type="png" href="#"> <!--icon-->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="../css/try.css">
 </head>
@@ -17,7 +16,7 @@
 	<nav class="navbar">
     <ul>
         
-        <li><a href="#">About Us</a></li>
+        <li><a href="home.php">Home</a></li>
         <li><a href="#">Grooming Service +</a>
             <ul>
                 <li><a href="dog_grooming.php">Dog Grooming</a></li>
