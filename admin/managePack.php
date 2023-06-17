@@ -45,7 +45,7 @@ else{
 		<a href="review.php" class="btn btn-dark" style="margin-left: 10px">Package Review</a>
 		<br><br>
 			<table class="table table-bordered" style="border-color: black;">
-			  <thead class="table-info" style="border-color: black;">
+			  <thead style="border-color: black; background-color: #ffdab9">
 				<tr>
 				  <th scope="col" class="text-center">ID</th>
 				  <th scope="col">PACKAGE NAME</th>

@@ -91,7 +91,7 @@ $counter = $offset + 1;
         </form>
 
         <table class="table table-bordered" style="border-color: black;">
-            <thead class="table-info" style="border-color: black;">
+            <thead style="border-color: black; background-color: #ffdab9">
                 <tr>
                     <th scope="col" class="text-center">NO</th>
                     <th scope="col"><center>PACKAGE NAME</center></th>

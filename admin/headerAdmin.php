@@ -28,7 +28,7 @@ else{
 	<label for="menu-bar">Menu</label>
 	<nav class="navbar">
     <ul> 
-		<li><a href="home.php">Home</a></li>
+		<li><a href="homepage.php">Home</a></li>
         <li><a href="managePack.php">Package</a></li>
         <li><a href="managePro.php">Product</a></li>
 		<li><a href="manageSup.php">Supplier</a></li>
