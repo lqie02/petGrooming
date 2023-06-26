@@ -96,7 +96,7 @@ if(!empty($_SESSION['cart'])){
   </form>
 </td>
 <td> <form method='post' action=''>
-    <input type='datetime-local' name='appointmentDate' value='" .$value['appointmentDate'] . "'>
+    <input type='datetime-local' name='appointmentDate' value='" .$value['appointmentDate'] . "' min='".date('Y-m-d\TH:i')."'>
     <input type='hidden' name='packageID' value='" . $value['packageID'] . "'>
 	<button type='submit' name='update_appointment_date' class='btn btn-outline-secondary btn-sm' style='margin-left:3px; margin-top:-2px;'>
       <i class='fa fa-refresh' aria-hidden='true'></i>

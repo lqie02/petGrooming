@@ -66,14 +66,14 @@ else
 	<meta charset="utf-8">
 	<link rel="shortcut icon" type="image/png" href="image/pets.png">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="css/registerCust.css"> <!--css-->
+	<link rel="stylesheet" type="text/css" href="css/index.css"> <!--css-->
 	<title>Abby Shop</title>
 	
 </head>
 <body>
-	<?php include('headerReg.php');?>
+
 	<br><br><br><br>
-	<div class="container" style="margin-top: 100px;">
+	<div class="container" >
 		<form action="" method="POST" class="login-email">
             <p class="login-text" style="font-size: 2rem; font-weight: 800;">Customer Register</p>
 			<div class="input-group">

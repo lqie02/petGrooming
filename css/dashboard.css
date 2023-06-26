@@ -26,10 +26,10 @@ main
 
 main .card
 {
-	max-width:  350px;
+	width:  350px;
 	flex: 1 1 290px;
 	text-align: center;
-	height: 550px;
+	height: 600px;
 	border: 1px solid lightgray;
 	margin-top: 50px;
 	margin-left: 50px;

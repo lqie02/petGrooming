@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   if ($result) {
     echo "<script>alert('Rating submitted successfully!');</script>";
-    echo "<meta http-equiv='refresh' content='0; url=dog_grooming.php'>";
+    echo "<meta http-equiv='refresh' content='0; url=orderPackHis.php'>";
   } else {
     echo "<script>alert('Failed to submit rating!');</script>";
     echo "<meta http-equiv='refresh' content='0; url=rating.php?id=$ordersID'>";

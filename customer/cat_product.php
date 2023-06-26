@@ -50,7 +50,7 @@ $result = $conn->query($sql);
 				<input type='hidden' name='productID' value='<?php echo $row["productID"] ?>'/>
 				<input type='hidden' name='unitPrice' value='<?php echo $row["p_unitPrice"] ?>'/>
 				<input type='hidden' name='productName' value='<?php echo $row["productName"] ?>'/>	
-				<p class="price" >Quantity :<input type="number" name="quantity" id="quantity" value="0" min="0" class="form-control" ></p>
+				<p class="price" >Quantity :<input type="number" name="quantity" id="quantity" value="0" min="1" class="form-control" ></p>
 				
 
 				<button class="add" type="submit" name="add_to_cart">Add to Cart</button>
@@ -58,8 +58,19 @@ $result = $conn->query($sql);
 		</div>
 		</form> <!-- close form for each product -->
 		<?php } ?>
-</main>
+</main><br>
+  <script>
+    function validateForm() {
+      var quantity = document.getElementById("quantity").value;
 
+      if (quantity < 1) {
+        alert("Please enter a quantity greater than 0.");
+        return false;
+      }
+
+      return true;
+    }
+  </script>
 	
 </body>
 </html>

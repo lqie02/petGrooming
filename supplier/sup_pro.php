@@ -91,7 +91,7 @@ else{
 			  </thead>
 			  <tbody>
 				  <?php
-					$lowStockProducts = ''; // New variable to store low stock products
+					$lowStockProducts = ''; 
 				  	$sql = "SELECT * FROM product p JOIN category c ON p.categoryID = c.categoryID JOIN supplier s ON p.supplierID = s.supplierID WHERE s.supplierID = '$id'";
 				  	$result = mysqli_query($conn,$sql);
 				  	while($row = mysqli_fetch_assoc($result))

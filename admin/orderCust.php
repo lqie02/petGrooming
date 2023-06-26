@@ -21,8 +21,14 @@ if(isset($_GET['status']) && isset($_GET['ordersID']))
 	
 	if($status =="Drop Point")
 	{
-	mysqli_query($conn,"UPDATE orders SET adminID = '$id' WHERE ordersID='$ordersID'");}
+	mysqli_query($conn,"UPDATE orders SET adminID = '$id' WHERE ordersID='$ordersID'");
+	}
 	
+	if($status =="Approve Cancel")
+	{
+	mysqli_query($conn,"UPDATE orders SET adminID = '$id' WHERE ordersID='$ordersID'");
+	}
+
 	
 	header("Location: orderCust.php");
 	
@@ -76,7 +82,7 @@ if(isset($_GET['status']) && isset($_GET['ordersID']))
 			$ret = mysqli_query($conn,"SELECT * FROM orders o
 			INNER JOIN customer c ON o.customerID = c.customerID
 			INNER JOIN product_detail d ON o.ordersID = d.ordersID
-			WHERE p_status != 'Drop Point' GROUP BY o.ordersID ORDER BY o.ordersID");
+			WHERE p_status != 'Drop Point' AND p_status != 'Approve Cancel' GROUP BY o.ordersID ORDER BY o.ordersID");
 
 			$i=1;
 		   
@@ -91,11 +97,23 @@ if(isset($_GET['status']) && isset($_GET['ordersID']))
 						<td><?php echo $row['cAddress'] ?></td>
 						<td><?php echo $row['p_status'] ?></td>
 						<td>
+						<?php
+						if($row['p_status'] == 'Cancel')
+						{ ?>
+							
+						<select  id="statusSelect" onChange="status_update(this.options[this.selectedIndex].value, '<?php echo $row['ordersID'] ?>')">
+						<option value="">Update Status</option>	
+						<option value="Approve Cancel">Approve Cancel</option>
+						</select>
+					<?php	}
+					else
+					{ ?>
 						<select  id="statusSelect" onChange="status_update(this.options[this.selectedIndex].value, '<?php echo $row['ordersID'] ?>')">
 						<option value="">Update Status</option>	
 						<option value="Accept">Accept</option>
 						<option value="Drop Point">Drop Point</option>
 						</select>
+				<?php	} ?>
 						</td>
 						<td>
           				<a href="custOrderDetail.php?id=<?php echo $row['ordersID'] ?>" class="link-dark" style="text-decoration: none;"><i class="fa fa-download"></i>&nbsp;Details</a>

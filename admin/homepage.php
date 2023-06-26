@@ -37,7 +37,7 @@ $row5 = mysqli_fetch_assoc($sql5);
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 <link rel="stylesheet" href="../css/homepage.css" >
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <title>Abby Shop</title>
 </head>
 
@@ -55,7 +55,7 @@ $row5 = mysqli_fetch_assoc($sql5);
                                 <h3 class="fs-2"><center><?php echo $row['num'] ?></center></h3>
                                 <p class="fs-5">Packages</p>
                             </div>
-                            <i class="fa-solid fa-scissors fs-1 primary-text  rounded-full secondary-bg p-3 "style="color: #D5591F;"></i>
+                            <a href="managePack.php" class="icon-link"><i class="fa-solid fa-scissors fs-1 primary-text  rounded-full secondary-bg p-3 "style="color: #D5591F;"></i></a>
                         </div>
                     </div>
 
@@ -65,8 +65,7 @@ $row5 = mysqli_fetch_assoc($sql5);
                                 <h3 class="fs-2"><center><?php echo $row1['num1'] ?></center></h3>
                                 <p class="fs-5">Products</p>
                             </div>
-                            <i
-                                class="fas fa-gift fs-1 primary-text  rounded-full secondary-bg p-3"></i>
+                            <a href="managePro.php" class="icon-link"><i class="fas fa-gift fs-1 primary-text  rounded-full secondary-bg p-3"></i></a>
                         </div>
                     </div>
 
@@ -76,7 +75,7 @@ $row5 = mysqli_fetch_assoc($sql5);
                                 <h3 class="fs-2"><center><?php echo $row2['num2'] ?></center></h3>
                                 <p class="fs-5">Suppliers</p>
                             </div>
-                            <i class="fa-solid fa-user-tie fs-1 primary-text  rounded-full secondary-bg p-3"></i>
+                            <a href="manageSup.php" class="icon-link"><i class="fa-solid fa-user-tie fs-1 primary-text  rounded-full secondary-bg p-3"></i></a>
                         </div>
                     </div>
                 </div>
@@ -91,7 +90,7 @@ $row5 = mysqli_fetch_assoc($sql5);
                                 <h3 class="fs-2"><center><?php echo $row3['num3'] ?></center></h3>
                                 <p class="fs-5">Pending to Approval</p>
                             </div>
-                            <i class="fa-solid fa-scissors fs-1 primary-text rounded-full secondary-bg p-3 "style="color: #D5591F;"></i>
+                            <a href="appointmentCust.php" class="icon-link"><i class="fa-solid fa-scissors fs-1 primary-text rounded-full secondary-bg p-3 "style="color: #D5591F;"></i></a>
                         </div>
                     </div>
 					
@@ -101,7 +100,7 @@ $row5 = mysqli_fetch_assoc($sql5);
                                 <h3 class="fs-2"><center><?php echo $row4['num4'] ?></center></h3>
                                 <p class="fs-5">Pending to Approve</p>
                             </div>
-                            <i class="fas fa-gift fs-1 primary-text rounded-full secondary-bg p-3"></i>
+                            <a href="orderCust.php" class="icon-link"><i class="fas fa-gift fs-1 primary-text rounded-full secondary-bg p-3"></i></a>
                         </div>
                     </div>
 					
@@ -111,7 +110,7 @@ $row5 = mysqli_fetch_assoc($sql5);
                                 <h3 class="fs-2"><center><?php echo $row5['num5'] ?></center></h3>
                                 <p class="fs-5">Low stock product</p>
                             </div>
-                            <i class="fas fa-gift fs-1 primary-text rounded-full secondary-bg p-3"></i>
+                            <a href="managePro.php" class="icon-link"><i class="fas fa-gift fs-1 primary-text rounded-full secondary-bg p-3"></i></a>
                         </div>
                     </div>
                 </div>

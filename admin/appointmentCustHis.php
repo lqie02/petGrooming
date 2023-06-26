@@ -76,7 +76,8 @@ $totalPages = ceil($totalEntries / $limit);
                     <th scope="col"><center>ORDER ID</center></th>
                     <th scope="col"><center>ORDERDATE</center></th>
                     <th scope="col"><center>CUSTOMER</center></th>
-                    <th scope="col"><center>DETAILS</center></th> 
+                    <th scope="col"><center>STATUS</center></th> 
+					<th scope="col"><center>DETAILS</center></th> 
                 </tr>
             </thead>
             <tbody>
@@ -89,6 +90,7 @@ $totalPages = ceil($totalEntries / $limit);
                         <th><center><?php echo $row['ordersID'] ?></center></th>
                         <th><center><?php echo $row['orderDate'] ?></center></th>
                         <th><center><?php echo $row['customerName'] ?></center></th>
+						<th><center><?php echo $row['status'] ?></center></th>
                         <th><center><a href="custAppDetail.php?id=<?php echo $row['ordersID'] ?>" class="link-dark" style="text-decoration: none;"><i class="fa fa-download"></i>&nbsp;Details</a></center></th>
                     </tr>
                 <?php

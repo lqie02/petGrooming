@@ -25,7 +25,7 @@ if(isset($_GET['packageID']) && isset($_GET['status']) && isset($_GET['ordersID'
 		mysqli_query($conn,"UPDATE orders SET adminID = '$id' WHERE ordersID='$ordersID'");
 	}
 	
-		if($status =="Cancel")
+		if($status =="Approve Cancel")
 	{
 		mysqli_query($conn,"UPDATE orders SET adminID = '$id' WHERE ordersID='$ordersID'");
 	}
@@ -81,7 +81,7 @@ if(isset($_GET['packageID']) && isset($_GET['status']) && isset($_GET['ordersID'
 			INNER JOIN customer c ON o.customerID = c.customerID
 			INNER JOIN appointment_detail d ON o.ordersID = d.ordersID
 			INNER JOIN package p ON d.packageID = p.packageID
-			WHERE status != 'Approve' GROUP BY o.ordersID ORDER BY o.ordersID");
+			WHERE status != 'Approve' AND status != 'Approve Cancel' GROUP BY o.ordersID ORDER BY o.ordersID");
 
 			$i=1;
 		   
@@ -96,10 +96,21 @@ if(isset($_GET['packageID']) && isset($_GET['status']) && isset($_GET['ordersID'
 						<td style="text-align:start;"><?php echo $row['package_details'] ?></td>
 						<td><?php echo $row['status'] ?></td>
 						<td>
+						<?php
+						if($row['status'] == 'Cancel')
+						{ ?>
+							<select  id="statusSelect" onChange="status_update(this.options[this.selectedIndex].value, '<?php echo $row['packageID'] ?>', '<?php echo $row['ordersID'] ?>')">
+							<option value="">Update Status</option>	
+							<option value="Approve Cancel">Approve Cancel</option>
+							</select>
+					<?php	}
+					else{ ?>
 						<select  id="statusSelect" onChange="status_update(this.options[this.selectedIndex].value, '<?php echo $row['packageID'] ?>', '<?php echo $row['ordersID'] ?>')">
 						<option value="">Update Status</option>	
 						<option value="Approve">Approve</option>
 						</select>
+				<?php	} ?>
+						
 						</td>
 
 					</tr>
