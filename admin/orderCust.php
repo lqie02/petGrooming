@@ -19,15 +19,17 @@ if(isset($_GET['status']) && isset($_GET['ordersID']))
 	mysqli_query($conn,"UPDATE product_detail SET p_status='$status'  WHERE ordersID='$ordersID'");
 	
 	
-	if($status =="Drop Point")
-	{
-	mysqli_query($conn,"UPDATE orders SET adminID = '$id' WHERE ordersID='$ordersID'");
-	}
+	 if ($status == "Drop Point" || $status == "Approve Cancel") {
+        mysqli_query($conn, "UPDATE orders SET adminID = '$id' WHERE ordersID='$ordersID'");
+    }
 	
-	if($status =="Approve Cancel")
-	{
-	mysqli_query($conn,"UPDATE orders SET adminID = '$id' WHERE ordersID='$ordersID'");
-	}
+	if ($status == "Approve Cancel") {
+        $updateQuery = "UPDATE product p
+                    INNER JOIN product_detail pd ON p.productID = pd.productID
+                    SET p.stockQuantity = p.stockQuantity + pd.p_quantity
+                    WHERE pd.ordersID = '$ordersID'";
+        mysqli_query($conn, $updateQuery);
+    }
 
 	
 	header("Location: orderCust.php");

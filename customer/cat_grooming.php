@@ -4,6 +4,15 @@ session_start();
 if(isset($_SESSION["customerID"]))
 {
   $id= $_SESSION["customerID"];
+	
+	if((time()-$_SESSION['Active_Time'])>300)
+	{
+		header('Location:../index.php');
+	}
+	else
+	{
+		$_SESSION['Active_Time'] = time();
+	}
 }
 else{
   header('Location: ../index.php');

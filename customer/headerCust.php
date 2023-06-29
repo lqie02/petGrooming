@@ -12,7 +12,7 @@
 <body>
 <header>
 	
-	<a href="#" class="logo">ABBY Shop</a>
+	<a href="home.php" class="logo">ABBY Shop</a>
 	<input type="checkbox" id="menu-bar">
 	<label for="menu-bar">Menu</label>
 	<nav class="navbar">
