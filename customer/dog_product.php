@@ -41,7 +41,7 @@ $result = $conn->query($sql);
 	<main>
 	<?php 
 		while($row = mysqli_fetch_assoc($result)) {
-			echo "<form method='post' action='addCartPro.php'>"; // open form for each product
+			echo "<form method='post' action='addCartPro.php' onsubmit='return validateForm".$row["productID"]."()'>"; // open form for each product
 	?>
 		<div class="card"> 
 			<div class="image">
@@ -56,27 +56,34 @@ $result = $conn->query($sql);
 				<input type='hidden' name='productID' value='<?php echo $row["productID"] ?>'/>
 				<input type='hidden' name='unitPrice' value='<?php echo $row["p_unitPrice"] ?>'/>
 				<input type='hidden' name='productName' value='<?php echo $row["productName"] ?>'/>	
-				<p class="price" >Quantity :<input type="number" name="quantity" id="quantity" value="0" min="1" class="form-control" ></p>
+				<p class="price" >Quantity :<input type="number" name="quantity" id="quantity<?php echo $row["productID"] ?>" value="0" min="1" class="form-control" ></p>
 				
 
 				<button class="add" type="submit" name="add_to_cart">Add to Cart</button>
 			</div>
 		</div>
 		</form> <!-- close form for each product -->
+		
+		<script>
+			function validateForm<?php echo $row["productID"] ?>() {
+				var quantity = document.getElementById("quantity<?php echo $row["productID"] ?>").value;
+				var stockQuantity = <?php echo $row["stockQuantity"] ?>;
+
+				if (quantity < 1) {
+					alert("Please enter a quantity greater than 0.");
+					return false;
+				}
+				
+				if (quantity > stockQuantity) {
+					alert("The order quantity cannot exceed the stock quantity!");
+					return false;
+				}
+
+				return true;
+			}
+		</script>
+		
 		<?php } ?>
-</main><br>
-  <script>
-    function validateForm() {
-      var quantity = document.getElementById("quantity").value;
-
-      if (quantity < 1) {
-        alert("Please enter a quantity greater than 0.");
-        return false;
-      }
-
-      return true;
-    }
-  </script>
-	
+	</main><br>
 </body>
 </html>

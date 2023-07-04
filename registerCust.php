@@ -23,11 +23,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
     if($query->num_rows)
 	{
-        echo "<script>alert('Email address already exist in database please login');</script>";
+        echo "<script>alert('Email address already exist in database! Please login.');</script>";
     }
 	elseif($password != $cpassword)
 	{
-		echo "<script>alert('Two passwords that enter do not match');</script>";
+		echo "<script>alert('Two passwords that enter do not match!');</script>";
 		echo"<meta http-equiv='refresh' content='0; url=registerCust.php'/>";
 	}
 	else 

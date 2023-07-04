@@ -196,6 +196,19 @@ function confirmCheckout() {
     return false;
   }
 }
+	
+function confirmLogout() {
+  <?php if (!empty($_SESSION['cart1'])) { ?>
+    if (confirm('Your cart is not empty. Are you sure you want to logout?')) {
+      window.location.href = '../logout.php';
+      return true;
+    } else {
+      return false;
+    }
+  <?php } else { ?>
+    return true;
+  <?php } ?>
+}
 </script>
 </body>
 </html>

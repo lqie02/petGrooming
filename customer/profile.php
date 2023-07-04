@@ -7,21 +7,43 @@ if (isset($_SESSION["customerID"])) {
 } else {
   header('Location: ../index.php');
 }
+//select password from database
+$sql = "SELECT * FROM customer WHERE customerID = '$id'";
+$result = mysqli_query($conn,$sql);
+$row=mysqli_fetch_assoc($result);
 
 if (isset($_POST['submit'])) {
-  // Perform the update query
-  $customer_query = mysqli_query($conn, "UPDATE customer SET customerName = '" . $_POST['customerName'] . "', email = '" . $_POST['email'] . "', telephone = '" . $_POST['telephone'] . "', cAddress = '" . $_POST['address'] . "', password = '" . md5($_POST['password']) . "' WHERE customerID ='$id' ");
-
-
-  // Check if the update was successful
-  if ($customer_query) {
-    // Trigger the refresh meta tag and display success message
-    echo '<meta http-equiv="refresh" content="0;url=profile.php">';
-    echo '<script>alert("Update successful");</script>';
-  } else {
-    // Display error message if the update failed
-   die('Update failed: ' . mysqli_error($conn));
+	
+  $cpassword = $_POST['password'];
+	$encrppass = md5($cpassword) ;
+	
+  if(empty($cpassword))
+  {
+	  echo "<script>alert('Cannot empty password!');</script>";
+	  echo"<meta http-equiv='refresh' content='0; url=profile.php'/>";
   }
+  elseif($encrppass != $row['password'])
+  {
+	 
+	  echo "<script>alert('Current passwords did not match with entered password! Update unsuccessfully!');</script>";
+	  echo"<meta http-equiv='refresh' content='0; url=profile.php'/>";
+  }
+  else
+  {
+	    $customer_query = mysqli_query($conn, "UPDATE customer SET customerName = '" . $_POST['customerName'] . "', email = '" . $_POST['email'] . "', telephone = '" . $_POST['telephone'] . "', cAddress = '" . $_POST['address'] . "' WHERE customerID ='$id' ");
+
+
+  	// Check if the update was successful
+  	if ($customer_query) {
+		// Trigger the refresh meta tag and display success message
+    	echo '<script>alert("Update successful!");</script>';
+		echo '<meta http-equiv="refresh" content="0;url=profile.php">';
+  	} else {
+    	// Display error message if the update failed
+   		die('Update failed: ' . mysqli_error($conn));
+  	}
+  }
+
 }
 
 $customer = mysqli_query($conn, "SELECT * FROM customer WHERE customerID = '" . $id . "'");
@@ -39,6 +61,7 @@ $row = mysqli_fetch_assoc($customer);
 <link rel="stylesheet" a href="../css/profile.css"> 
 <link rel="stylesheet" a href="../css/bootstrapla.css">
 <title>Profile</title>  
+
 </head>
 
 <body>
@@ -66,9 +89,14 @@ $row = mysqli_fetch_assoc($customer);
             <input type="text" style="font-size: 16px" placeholder="Address" name="address" value="<?php echo $row['cAddress'] ?>">
 
             <label>Password</label>
-            <input pattern=".{8,}" type="password" placeholder="Password" name="password" title="8 characters minimum" value="<?php echo $row['password'] ?>">
+            <input pattern=".{8,}" type="password" placeholder="Password" name="password" title="8 characters minimum" value="">
             <br><br>
-            <button class="button button3" name="submit">Submit</button>
+			  
+            <div class="button-container">
+  			<button class="button" name="submit">Submit</button>
+			<a href="updatePass.php" class="button" style="background-color: red;color: aliceblue">Reset Password</a>
+
+			</div>
           </div>
         </div>
       </div>

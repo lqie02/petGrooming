@@ -75,9 +75,6 @@ if (isset($_POST['checkout'])){
     echo "<script>alert('$success_message'); window.location.href='$redirect_url';</script>";
     exit();
 
-
-
-    exit();
   } else {
     echo "Error inserting order: " . $stmt->error;
   }

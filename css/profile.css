@@ -305,7 +305,7 @@ margin-top: 50px;
     flex-shrink: 0;
     height: 100%;
     width: 100%;
-    max-height: 550px;
+    height: 550px;
   }
 }
 svg {
@@ -354,6 +354,10 @@ input::-moz-focus-inner {
 #submit:active {
   color: #d0d0d2;
 }
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+  }
 .button {
   background-color: #3333ff; /* Green */
   border: none;
@@ -365,8 +369,9 @@ input::-moz-focus-inner {
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
+ 
 }
-.button3 {width: 100%;}
+.button3 {width: 50%;}
 
 .order_status{
   background: #ededed;

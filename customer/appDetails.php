@@ -67,7 +67,7 @@ if (isset($_POST['checkout'])){
 	}
 	  
     
-// clear shopping cart
+    // clear shopping cart
 
 	unset($_SESSION['cart']);
     $amount_after_charging = $_POST['amountAfterCharging'];

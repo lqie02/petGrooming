@@ -45,7 +45,8 @@ if(isset($_POST['btn_login']))
         $_SESSION['customerID'] = $row["customerID"];
         $_SESSION['customerName']   = $row['customerName'];
         $_SESSION['email'] = $row['email'];
-        $_SESSION['telephone'] = $row['telephone'];    
+        $_SESSION['telephone'] = $row['telephone'];
+		$_SESSION['Active_Time'] = time();
 
         mysqli_query($conn,"DELETE FROM loginlogs WHERE IpAddress = '" . $ip_address . "'");
         echo "<script>alert('Login Success!');</script>";
@@ -137,4 +138,4 @@ if(isset($_POST['btn_login']))
     </form>
   </section>
 </body>
-
+</html>
