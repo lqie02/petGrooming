@@ -107,7 +107,7 @@ if(isset($_POST['submit']))
 					
 					<div><br>
 						<label class="form-label">Password :</label>
-						<input pattern=".{8,}" type="password" class="form-control" name="s_password" placeholder="Password" value=" <?php echo $row['s_password'] ?>" required title="8 characters minimum">
+						<input pattern=".{8,}" type="password" class="form-control" name="s_password" placeholder="Password" value="" required title="8 characters minimum">
 					</div>
 				
 					

@@ -80,17 +80,17 @@ if(isset($_POST['submit']))
 				<div class="row">
 					<div class="cal">
 						<label class="form-label">Product Name : </label>
-						<input type="text" class="form-control" name="productName" placeholder="Cat/Dog Food">
+						<input type="text" class="form-control" name="productName" placeholder="Cat/Dog Food" required>
 					</div>
 					
 					<div class="cal"><br>
 						<label class="form-label">Unit Price : </label>
-						<input type="text" class="form-control" name="p_unitPrice" placeholder="RM xxx.xx">
+						<input type="number" class="form-control" min="1" name="p_unitPrice" placeholder="RM xxx.xx" required>
 					</div>
 					
 					<div class="cal"><br>
 						<label class="form-label">Stock Quantity : </label>
-						<input type="text" class="form-control" name="stockQuantity" placeholder="xxx">
+						<input type="text" class="form-control" name="stockQuantity" placeholder="xxx" required>
 					</div>
 					
 					<div class="cal"><br>
@@ -101,18 +101,18 @@ if(isset($_POST['submit']))
 					
 					<div class="cal"><br>
 						<label>Select Category :</label><br>
-						<input type="radio" name="cName" value="7000"> Dog &nbsp;&nbsp;&nbsp;&nbsp;
-				   		<input type="radio" name="cName" value="7001"> Cat
+						<input type="radio" name="cName" value="7000" required> Dog &nbsp;&nbsp;&nbsp;&nbsp;
+				   		<input type="radio" name="cName" value="7001" required> Cat
 					</div>
 					
 					<div class="cal"><br>
 						<label class="form-label">Image : </label>
-						<input type="file" class="form-control" name="image" placeholder="">
+						<input type="file" class="form-control" name="image" placeholder="" required>
 					</div>	
 					
 					<div><br>
 						<button type="submit" class="btn btn-success" name="submit">&nbsp;Save&nbsp;</button>&nbsp;
-						<a href="manageSup.php" class="btn btn-danger">Cancel</a>
+						<a href="sup_pro.php" class="btn btn-danger">Cancel</a>
 					</div>
 					<div><br></div>
 				  </div>

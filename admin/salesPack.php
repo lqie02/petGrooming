@@ -5,7 +5,7 @@ include('../connection/connection.php');
 if (isset($_SESSION["adminID"])) {
   $adminID = $_SESSION["adminID"];
 	
-	if((time()-$_SESSION['Active_Time'])>2000)
+	if((time()-$_SESSION['Active_Time'])>30000)
 	{
 		header('Location:../indexAd.php');
 	}
@@ -195,7 +195,7 @@ $totalCharge = $rowAmount['totalSum'];
         },
         title: {
           display: true,
-          text: "Total Daily Sales"
+          text:"Total Daily Sales - <?php echo date('F j, Y', strtotime($selectedDate)); ?>"
         }
       }
     }

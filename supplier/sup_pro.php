@@ -161,7 +161,7 @@ else{
 										
 										<div class="mb-3">
 											<label for="p_unitPrice" class="form-label">Price</label>
-											<input type="text" class="form-control" id="p_unitPrice" name="p_unitPrice" value="<?php echo $row['p_unitPrice']; ?>" required>
+											<input type="number" min="1" class="form-control" id="p_unitPrice" name="p_unitPrice" value="<?php echo $row['p_unitPrice']; ?>" required>
 										</div>
 										
 										<div class="mb-3">

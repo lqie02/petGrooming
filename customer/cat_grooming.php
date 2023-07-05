@@ -48,7 +48,7 @@ $result = $conn->query($sql);
 <body>
   <?php include('headerCust.php');?>
 
-  <p style="margin-top: 120px;"><center><b style="font-size: 25px;">DOG GROOMING</b></center></p>
+  <p style="margin-top: 120px;"><center><b style="font-size: 25px;">CAT GROOMING</b></center></p>
 
   <main>
     <?php 
@@ -88,7 +88,7 @@ $result = $conn->query($sql);
               for ($i = 1; $i <= $remainingStars; $i++) {
                 echo "<span class='star'><i class='far fa-star star-gold'></i></span>";
               }
-            ?>
+            ?><span style="margin-left: 5px; font-size:  10px">(<?php echo $row['avgRating'] ?>)</span>
           </div>
           <p class="package_name"><b><?php echo $row["packageName"] ?></b></p>
           <p class="price"><b>Price : RM <?php echo $row["unitPrice"] ?></b></p>

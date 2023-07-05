@@ -31,7 +31,7 @@ if(isset($_POST['submit']))
 		{
 			$image = addslashes(file_get_contents($insert_image_tmp_name)); 
 			
-			$query = "INSERT INTO package(packageName, animalType, unitPrice, description, p_image,adminID) VALUES ('$packageName', '$animalType', '$unitPrice', '$description', '$image', '$id' )";
+			$query = "INSERT INTO package(packageName, animalType, unitPrice, description, p_image, avgRating,adminID) VALUES ('$packageName', '$animalType', '$unitPrice', '$description', '$image', '0', '$id' )";
 
 			$res = mysqli_query($conn,$query);
 

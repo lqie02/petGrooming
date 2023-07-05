@@ -84,12 +84,12 @@ if(isset($_POST['submit']))
 						
 					<div class="cal"><br>
 						<label class="form-label">Email : </label>
-						<input type="text" class="form-control" name="s_email" placeholder="example@gmail.com" required>
+						<input type="email" class="form-control" name="s_email" placeholder="example@gmail.com" required>
 					</div>
 					
 					<div class="cal"><br>
 						<label class="form-label">Telephone : </label>
-						<input type="text" class="form-control" name="s_telephone" placeholder="+60 1xxxxxxxx" required>
+						<input type="tel" pattern="[0-9]{10,11}" class="form-control" name="s_telephone" placeholder="+60 1xxxxxxxx" required title="10 number minimum">
 					</div>
 					
 					<div class="cal"><br>
