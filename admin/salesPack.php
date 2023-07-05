@@ -5,7 +5,7 @@ include('../connection/connection.php');
 if (isset($_SESSION["adminID"])) {
   $adminID = $_SESSION["adminID"];
 	
-	if((time()-$_SESSION['Active_Time'])>300)
+	if((time()-$_SESSION['Active_Time'])>2000)
 	{
 		header('Location:../indexAd.php');
 	}

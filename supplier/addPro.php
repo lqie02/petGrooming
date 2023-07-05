@@ -23,7 +23,7 @@ if(isset($_POST['submit']))
 	
 	if(!empty($insert_image))
 	{
-     	if($insert_image_size > 100000)
+     	if($insert_image_size > 300000)
 	 	{
           echo "<script>alert('Image is too big');</script>";
           echo "<script>window.location.href ='addPro.php'</script>";

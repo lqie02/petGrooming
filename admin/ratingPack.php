@@ -5,7 +5,7 @@ if(isset($_SESSION["adminID"]))
 {
   $id= $_SESSION["adminID"];
 	
-	if((time()-$_SESSION['Active_Time'])>300)
+	if((time()-$_SESSION['Active_Time'])>3000)
 	{
 		header('Location:../indexAd.php');
 	}

@@ -68,7 +68,7 @@ if (isset($_GET['id'])) {
     
   </div>
   <div class="row">
-    <div class="col-sm-12 text-sm-center"><h3 style="padding-top: 15px;">INVOICE ABBY SHOP </h3></div>
+    <div class="col-sm-12 text-sm-center"><h3 style="padding-top: 15px;">RECEIPT ABBY SHOP </h3></div>
     
   </div>
   <hr style="background-color: black;">

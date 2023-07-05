@@ -45,7 +45,7 @@ if(isset($_POST['submit']))
 				echo "Failed: " .mysqli_error($conn);
 			}
 		}	
-	}	
+	}
 }
 ?>
 
@@ -78,12 +78,12 @@ if(isset($_POST['submit']))
 				<div class="row">
 					<div class="cal">
 						<label class="form-label">Pacakge Name : </label>
-						<input type="text" class="form-control" name="packageName" placeholder="Dog Shower">
+						<input type="text" class="form-control" name="packageName" placeholder="Dog Shower" required>
 					</div>
 					
 					<div class="cal"><br>
 						<label class="form-label">Unit Price : </label>
-						<input type="text" class="form-control" name="unitPrice" placeholder="RM xxx.xx">
+						<input type="number" class="form-control" name="unitPrice" min="1" placeholder="RM xxx.xx" required>
 					</div>
 					
 					<div class="cal"><br>
@@ -94,18 +94,18 @@ if(isset($_POST['submit']))
 					
 					<div class="cal"><br>
 						<label>Select Category :</label><br>
-						<input type="radio" name="animalType" value="Dog"> Dog &nbsp;&nbsp;&nbsp;&nbsp;
-				   		<input type="radio" name="animalType" value="Cat"> Cat
+						<input type="radio" name="animalType" value="Dog" required> Dog &nbsp;&nbsp;&nbsp;&nbsp;
+				   		<input type="radio" name="animalType" value="Cat" required> Cat
 					</div>
 					
 					<div class="cal"><br>
 						<label class="form-label">Image : </label>
-						<input type="file" class="form-control" name="image" placeholder="">
+						<input type="file" class="form-control" name="image" placeholder="" required>
 					</div>	
 					
 					<div><br>
 						<button type="submit" class="btn btn-success" name="submit">&nbsp;Save&nbsp;</button>&nbsp;
-						<a href="manageSup.php" class="btn btn-danger">Cancel</a>
+						<a href="managePack.php" class="btn btn-danger">Cancel</a>
 					</div>
 					<div><br></div>
 				  </div>

@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $imageData = addslashes(file_get_contents($imageTmpName)); // Addslashes to handle special characters
 
             // Update the image in the database
-            $sql = "UPDATE product SET p_image = '$imageData' WHERE productID = '$productID'";
+            $sql = "UPDATE product SET pro_image = '$imageData' WHERE productID = '$productID'";
             $result = mysqli_query($conn, $sql);
 
             // Check if the image update was successful

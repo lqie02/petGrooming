@@ -74,27 +74,27 @@ if(isset($_POST['submit']))
 				<div class="row">
 					<div class="cal">
 						<label class="form-label">Name : </label>
-						<input type="text" class="form-control" name="supplierName" placeholder="John">
+						<input type="text" class="form-control" name="supplierName" placeholder="John" required>
 					</div>
 					
 					<div class="cal"><br>
 						<label class="form-label">Company Name : </label>
-						<input type="text" class="form-control" name="companyName" placeholder="John Sdn Bhd">
+						<input type="text" class="form-control" name="companyName" placeholder="John Sdn Bhd" required> 
 					</div>
 						
 					<div class="cal"><br>
 						<label class="form-label">Email : </label>
-						<input type="text" class="form-control" name="s_email" placeholder="example@gmail.com">
+						<input type="text" class="form-control" name="s_email" placeholder="example@gmail.com" required>
 					</div>
 					
 					<div class="cal"><br>
 						<label class="form-label">Telephone : </label>
-						<input type="text" class="form-control" name="s_telephone" placeholder="+60 1xxxxxxxx">
+						<input type="text" class="form-control" name="s_telephone" placeholder="+60 1xxxxxxxx" required>
 					</div>
 					
 					<div class="cal"><br>
 						<label class="form-label">Address : </label>
-						<input type="text" class="form-control" name="s_address" placeholder="state city postcode">
+						<input type="text" class="form-control" name="s_address" placeholder="state city postcode" required>
 					</div>
 						
 					<div class="cal"><br>
