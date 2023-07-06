@@ -77,7 +77,7 @@ else{
 		<a href="addPro.php" class="btn btn-dark" style="margin-top: 100px;">Add New Product</a>
 		<br><br>
 			<table class="table table-bordered" style="border-color: black;">
-			  <thead class="table-info" style="border-color: black;">
+			  <thead style="border-color: black; background-color: #ffdab9">
 				<tr>
 				  <th scope="col" class="text-center">ID</th>
 				  <th scope="col">PRODUCT NAME</th>

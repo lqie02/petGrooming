@@ -154,7 +154,7 @@ if (isset($_GET['id'])) {
   <div class="btn-group btn-group-sm d-print-none"> 
   <a href="javascript:window.print()" class="btn btn-light border text-black-50 shadow-none"><i class="fa fa-print"></i> Print</a> 
   <a href="#" id="download" class="btn btn-light border text-black-50 shadow-none"><i class="fa fa-download"></i> Download</a> 
-  <a href="orderCust.php" class="btn btn-light border text-black-50 shadow-none"><i class="fa fa-chevron-left"></i> Back</a>   
+  <a href="orderCustHis.php" class="btn btn-light border text-black-50 shadow-none"><i class="fa fa-chevron-left"></i> Back</a>   
   </div>
   </footer> 
 

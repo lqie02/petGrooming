@@ -11,12 +11,12 @@
 <body>
 <header>
 	
-	<a href="#" class="logo">Abby Shop</a>
+	<a href="sup_pro.php" class="logo">Abby Shop</a>
 	<input type="checkbox" id="menu-bar">
 	<label for="menu-bar">Menu</label>
 	<nav class="navbar">
     <ul> 
-		<li><a href="home.php">Home</a></li>        
+		<li><a href="sup_pro.php">Home</a></li>        
         <li><a href="sup_pro.php">Product</a></li>		
         <li><a href="logoutS.php">Logout</a></li>
     </ul>

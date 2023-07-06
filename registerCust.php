@@ -83,7 +83,7 @@ else
 				<input type="email" placeholder="Email" name="email" value="<?php echo $email; ?>" required>
 			</div>
 			<div class="input-group">
-				<input type="text" placeholder="Telephone" name="telephone" value="<?php echo $telephone; ?>" required>
+				<input type="number" pattern=".{10,11}" placeholder="Telephone" name="telephone" value="<?php echo $telephone; ?>" required title="10 number minimum">
 			</div>
 			<div class="input-group">
 				<input type="text" placeholder="Address" name="cAddress" value="<?php echo $cAddress; ?>" required>

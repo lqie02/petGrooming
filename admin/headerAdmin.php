@@ -23,7 +23,7 @@ else{
 <body>
 <header>
 	
-	<a href="#" class="logo">Abby Shop</a>
+	<a href="homepage.php" class="logo">Abby Shop</a>
 	<input type="checkbox" id="menu-bar">
 	<label for="menu-bar">Menu</label>
 	<nav class="navbar">
