@@ -248,6 +248,13 @@ $totalCharge = $rowAfterCharge['totalSum'];
     }
   });
 </script>
+<div class="print" style="margin-top: 20px; text-align: center;"> 
+<button type="button" >
+  <a href="javascript:window.print()" class="btn btn-light border shadow-none" style="color: black;">
+    <i class="fa fa-print"></i> Print
+  </a>
+</button>
+</div>
 <br>
 </body>
 </html>

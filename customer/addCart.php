@@ -80,7 +80,8 @@ if (isset($_POST['add_to_cart'])) {
 if(!empty($_SESSION['cart'])){
 	$counter = 1;
   foreach($_SESSION['cart'] as $key => $value){
-
+  $oneMonthFromNow = date('Y-m-d\TH:i', strtotime('+1 month'));
+	  
     $output .="
     <tr>
 	<td>".$counter."</td>
@@ -95,14 +96,16 @@ if(!empty($_SESSION['cart'])){
     </button>
   </form>
 </td>
-<td> <form method='post' action=''>
-    <input type='datetime-local' name='appointmentDate' value='" .$value['appointmentDate'] . "' min='".date('Y-m-d\TH:i')."'>
-    <input type='hidden' name='packageID' value='" . $value['packageID'] . "'>
-	<button type='submit' name='update_appointment_date' class='btn btn-outline-secondary btn-sm' style='margin-left:3px; margin-top:-2px;'>
-      <i class='fa fa-refresh' aria-hidden='true'></i>
-    </button>
-  </form>
-  </td>
+        <td>
+          <form method='post' action=''>
+            <input type='datetime-local' name='appointmentDate' value='".$value['appointmentDate']."' max='".$oneMonthFromNow."'>
+            <input type='hidden' name='packageID' value='".$value['packageID']."'>
+            <button type='submit' name='update_appointment_date' class='btn btn-outline-secondary btn-sm' style='margin-left:3px; margin-top:-2px;'>
+              <i class='fa fa-refresh' aria-hidden='true'></i>
+            </button>
+          </form>
+        </td>
+
     <td>RM ".number_format($value['unitPrice'] * $value['quantity'],2)."</td>
     <td>
 <a href='addCart.php?action=remove&id=".$value['packageID']."'>

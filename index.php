@@ -49,7 +49,7 @@ if(isset($_POST['btn_login']))
 		$_SESSION['Active_Time'] = time();
 
         mysqli_query($conn,"DELETE FROM loginlogs WHERE IpAddress = '" . $ip_address . "'");
-        echo "<script>alert('Login Success!');</script>";
+        echo "<script>alert('Login Successfully!');</script>";
         echo"<meta http-equiv='refresh' content='0; url=customer/home.php'>";
 		}
 		else

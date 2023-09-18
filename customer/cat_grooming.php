@@ -101,11 +101,16 @@ $result = $conn->query($sql);
           <p class="price">Quantity:
             <input type="number" name="quantity" id="quantity_<?php echo $row["packageID"]; ?>" value="0" min="1" class="form-control">
           </p>
-          <p class="price" for="appointmentDate">
-            Appointment Date:
-            <input type="datetime-local" name="appointmentDate" id="appointmentDate_<?php echo $counter; ?>" class="form-control" min="<?php echo date('Y-m-d\TH:i'); ?>">
-      		<span id="dateError_<?php echo $counter; ?>" style="color: red; display: none;">Please enter a valid appointment date.</span> 
-          </p>
+<p class="price" for="appointmentDate">
+  Appointment Date:
+  <?php
+    $oneMonthFromNow = date('Y-m-d\TH:i', strtotime('+1 month'));
+	$currentDateTime = date('Y-m-d\TH:i');
+  ?>
+  <input type="datetime-local" name="appointmentDate" id="appointmentDate_<?php echo $counter; ?>" class="form-control" max="<?php echo $oneMonthFromNow; ?>" min="<?php echo $currentDateTime; ?>">
+  <span id="dateError_<?php echo $counter; ?>" style="color: red; display: none;">Please enter a valid appointment date.</span>
+</p>
+
           <button class="add" type="submit" name="add_to_cart">Add to Cart</button>
         </div>
       </div>

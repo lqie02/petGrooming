@@ -92,7 +92,12 @@ else{
 			  <tbody>
 				  <?php
 					$lowStockProducts = ''; 
-				  	$sql = "SELECT * FROM product p JOIN category c ON p.categoryID = c.categoryID JOIN supplier s ON p.supplierID = s.supplierID WHERE s.supplierID = '$id'";
+				  	$sql = "SELECT *
+							FROM product p
+							JOIN category c ON p.categoryID = c.categoryID
+							JOIN supplier s ON p.supplierID = s.supplierID
+							WHERE s.supplierID = '$id'
+							ORDER BY CASE WHEN p.stockQuantity < 10 THEN 1 ELSE 2 END;";
 				  	$result = mysqli_query($conn,$sql);
 				  	while($row = mysqli_fetch_assoc($result))
 					{ 

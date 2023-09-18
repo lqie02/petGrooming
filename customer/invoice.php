@@ -162,9 +162,6 @@ if (isset($_GET['id'])) {
 </div> <?php }   ?>
 
  
-
-
-
   <script>
 window.onload = function(){
   document.getElementById("download")
