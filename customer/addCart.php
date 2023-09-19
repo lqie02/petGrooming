@@ -80,7 +80,9 @@ if (isset($_POST['add_to_cart'])) {
 if(!empty($_SESSION['cart'])){
 	$counter = 1;
   foreach($_SESSION['cart'] as $key => $value){
+  date_default_timezone_set('Asia/Kuala_Lumpur');
   $oneMonthFromNow = date('Y-m-d\TH:i', strtotime('+1 month'));
+  $currentDateTime = date('Y-m-d\TH:i');
 	  
     $output .="
     <tr>
@@ -98,7 +100,7 @@ if(!empty($_SESSION['cart'])){
 </td>
         <td>
           <form method='post' action=''>
-            <input type='datetime-local' name='appointmentDate' value='".$value['appointmentDate']."' max='".$oneMonthFromNow."'>
+            <input type='datetime-local' name='appointmentDate' value='".$value['appointmentDate']."' max='".$oneMonthFromNow."' min='".$currentDateTime."'>
             <input type='hidden' name='packageID' value='".$value['packageID']."'>
             <button type='submit' name='update_appointment_date' class='btn btn-outline-secondary btn-sm' style='margin-left:3px; margin-top:-2px;'>
               <i class='fa fa-refresh' aria-hidden='true'></i>

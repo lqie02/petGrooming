@@ -17,7 +17,7 @@
 	<label for="menu-bar">Menu</label>
 	<nav class="navbar">
     <ul>
-        <li><a href="home.php">Home</a></li>
+       <!-- <li><a href="home.php">Home</a></li> -->
         <li><a href="#">Grooming Service +</a>
             <ul>
                 <li><a href="dog_grooming.php">Dog Grooming</a></li>

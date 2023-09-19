@@ -107,7 +107,7 @@ else{
 
         <div class="row mt-5 justify-content-center">        
 		<div class="section-title">
-          <h2>Contact</h2>
+          <h2>Contact Us</h2>
         </div>
           <div class="col-lg-10">
             <div class="info-wrap">

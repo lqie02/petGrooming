@@ -24,7 +24,7 @@ if(isset($_POST['submit']))
 	{
      	if($insert_image_size > 100000)
 	 	{
-          echo "<script>alert('Image is too big');</script>";
+          echo "<script>alert('Failed to insert!');</script>";
           echo "<script>window.location.href ='addPack.php'</script>";
      	}
 		else

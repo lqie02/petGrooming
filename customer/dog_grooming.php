@@ -104,6 +104,7 @@ $result = $conn->query($sql);
 <p class="price" for="appointmentDate">
   Appointment Date:
   <?php
+	date_default_timezone_set('Asia/Kuala_Lumpur');
     $oneMonthFromNow = date('Y-m-d\TH:i', strtotime('+1 month'));
 	$currentDateTime = date('Y-m-d\TH:i');
   ?>
@@ -119,13 +120,30 @@ $result = $conn->query($sql);
 
 <script>
   function validateForm(counter) {
-    var appointmentDate = document.getElementById("appointmentDate_" + counter).value; 
-    if (appointmentDate === "") {
-      alert('Please fill in the apointment date.');
+    var appointmentDateInput = document.getElementById("appointmentDate_" + counter);
+    var appointmentDateValue = appointmentDateInput.value.trim(); // Trim any leading/trailing spaces
+    
+    if (appointmentDateValue === "") {
+      alert('Please fill in the appointment date.');
       return false;
     }
+
+    var appointmentDate = new Date(appointmentDateValue); 
+    var currentDate = new Date();
+
+    if (isNaN(appointmentDate.getTime())) {
+      alert('Please enter a valid appointment date.');
+      return false;
+    }
+    
+    if (appointmentDate <= currentDate) {
+      alert('Please select a future appointment date.');
+      return false;  
+    }
+    
     return true;
   }
 </script>
+
 </body>
 </html>
